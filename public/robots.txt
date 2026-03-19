@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://southeasthummingbirds.com/sitemap-index.xml
+Sitemap: https://southernhummers.com/sitemap-index.xml
