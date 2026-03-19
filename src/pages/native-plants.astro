@@ -97,6 +97,12 @@ const plantColors: Record<string, string> = {
         Where to Buy
       </a>
     </div>
+
+    <!-- Hero Image -->
+    <figure class="mt-10">
+      <img src="/images/photos/hummingbird-garden.jpg" alt="Hummingbird feeding from native garden flowers" class="w-full rounded-2xl shadow-sm" loading="lazy" />
+      <figcaption class="text-xs text-gray-400 mt-1">Photo: Unsplash</figcaption>
+    </figure>
   </section>
 
   <!-- Top-Tier Plants -->
@@ -108,6 +114,13 @@ const plantColors: Record<string, string> = {
           These are the most reliable, longest-blooming native plants for attracting hummingbirds in the Southeast. Start with these for maximum impact.
         </p>
       </div>
+
+      <!-- Featured: Cardinal Flower -->
+      <figure class="mb-10">
+        <img src="/images/photos/cardinal-flower.jpg" alt="Hummingbird feeding at cardinal flower (Lobelia cardinalis)" class="w-full rounded-2xl shadow-sm" loading="lazy" />
+        <figcaption class="text-xs text-gray-400 mt-1">Photo: Unsplash</figcaption>
+      </figure>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {topTierPlants.map((plant) => (
           <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -140,6 +153,18 @@ const plantColors: Record<string, string> = {
             </div>
           </article>
         ))}
+      </div>
+
+      <!-- Plant Photos: Bee Balm & Trumpet Creeper -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+        <figure>
+          <img src="/images/photos/bee-balm.jpg" alt="Red bee balm (Monarda didyma) flower close-up" class="w-full rounded-2xl shadow-sm" loading="lazy" />
+          <figcaption class="text-xs text-gray-400 mt-1">Photo: Unsplash</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/photos/trumpet-creeper.jpg" alt="Orange trumpet creeper (Campsis radicans) flowers" class="w-full rounded-2xl shadow-sm" loading="lazy" />
+          <figcaption class="text-xs text-gray-400 mt-1">Photo: Unsplash</figcaption>
+        </figure>
       </div>
     </div>
   </section>
