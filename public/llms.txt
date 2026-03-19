@@ -1,0 +1,34 @@
+# Southeast Hummingbirds
+
+> Your complete guide to attracting, feeding, and identifying hummingbirds in the southeastern United States (Georgia, Florida, South Carolina, Alabama).
+
+## About This Site
+Southern Hummers (southernhummers.com) is a free resource covering everything about hummingbirds in the Southeast US. The site focuses on the Ruby-throated Hummingbird — the only breeding species in eastern North America — plus rare winter visitors.
+
+## Pages
+
+- [Home](https://southernhummers.com/): Landing page with geolocation-based hummingbird activity status, nectar calculator, and navigation to all guides.
+- [Migration Timing](https://southernhummers.com/migration/): Regional migration arrival and departure data for 9 zones across GA, FL, SC, and AL. Includes spring arrival dates, peak activity periods, and fall departure timing.
+- [Species Identification Guide](https://southernhummers.com/species/): Detailed field marks for Ruby-throated Hummingbird (male, female, juvenile) plus rare winter visitors: Rufous, Black-chinned, and Calliope Hummingbirds.
+- [Best Hummingbird Feeders](https://southernhummers.com/feeders/): Expert-tested feeder recommendations at three price points (Aspects HummZinger, More Birds Garnet Glass, First Nature 3055), ranked by cleaning ease. Includes cleaning protocol.
+- [Homemade Nectar Recipe](https://southernhummers.com/nectar/): The 4:1 water-to-sugar ratio recipe with interactive calculator. Covers what NOT to use (red dye, honey, artificial sweeteners, brown sugar) and nectar freshness guidelines by temperature.
+- [Feeder Placement Guide](https://southernhummers.com/feeder-placement/): Optimal feeder positioning, the territorial male problem and solutions, and seasonal placement adjustments.
+- [Pest Control](https://southernhummers.com/pest-control/): Solutions for ants, bees, wasps, and yellow jackets ranked by effectiveness. Includes ant moat recommendations and chemical-free approaches.
+- [Native Plants Guide](https://southernhummers.com/native-plants/): 16 native plants for the Southeast organized by tier, with bloom times, light/water needs, and a month-by-month bloom calendar (March–October). Includes where to buy native plants by state.
+- [Window Strike Prevention](https://southernhummers.com/window-safety/): The 3-foot / 30-foot rule for feeder placement near windows, plus 7 solutions ranked by effectiveness and cost.
+- [Seasonal Calendar](https://southernhummers.com/seasonal-calendar/): Month-by-month guide to hummingbird activity, feeder maintenance, and what to watch for across all 12 months.
+
+## Key Facts
+- Ruby-throated Hummingbird is the ONLY breeding hummingbird in eastern North America
+- Nectar recipe: 4 parts water to 1 part plain white sugar (never use red dye, honey, or artificial sweeteners)
+- Southeast arrival: February (South Florida) through April (mountain regions)
+- Southeast departure: September through late October
+- Hummingbirds migrate based on day length, NOT food availability — leaving feeders up does NOT prevent migration
+- Keep feeders up 2 weeks after last sighting to help stragglers
+- Change nectar every 2-3 days in summer heat (above 80°F)
+
+## Coverage Area
+Georgia, Florida, South Carolina, Alabama — with regional data for Coastal, Piedmont, Inland, and Mountain zones.
+
+## Sources
+Content is sourced from Cornell Lab of Ornithology, Smithsonian National Zoo, Audubon Society, Georgia DNR, University of Florida IFAS Extension, and other authoritative references.
