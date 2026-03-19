@@ -1,0 +1,331 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { topTierPlants, midTierPlants, shrubs, bloomCalendar } from '../data/plants';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Native Plants for Hummingbirds — Southeast US',
+  description: 'Native plants that attract hummingbirds in Georgia, Florida, South Carolina, and Alabama. Plant for continuous blooms March through October.',
+  author: {
+    '@type': 'Organization',
+    name: 'Southeast Hummingbirds',
+  },
+};
+
+const currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
+
+const buyLinks = [
+  { state: 'Georgia', name: 'Georgia Native Plant Society', url: 'https://gnps.org/' },
+  { state: 'Florida', name: 'Florida Native Plant Society', url: 'https://fnps.org/' },
+  { state: 'South Carolina', name: 'SC Native Plant Society', url: 'https://scnps.org/' },
+  { state: 'Alabama', name: 'Alabama Wildflower Society', url: 'https://alwildflowers.org/' },
+];
+
+const sources = [
+  { label: 'Audubon Native Plants Database', url: 'https://www.audubon.org/native-plants' },
+  { label: 'Lady Bird Johnson Wildflower Center', url: 'https://www.wildflower.org/' },
+  { label: 'USDA PLANTS Database', url: 'https://plants.usda.gov/' },
+];
+
+const plantColors: Record<string, string> = {
+  'Coral Honeysuckle': 'bg-rose-100 text-rose-800',
+  'Cardinal Flower': 'bg-red-100 text-red-800',
+  'Trumpet Vine': 'bg-orange-100 text-orange-800',
+  'Scarlet Sage': 'bg-pink-100 text-pink-800',
+  'Bee Balm': 'bg-fuchsia-100 text-fuchsia-800',
+  'Cross Vine': 'bg-amber-100 text-amber-800',
+  'Fire Pink': 'bg-red-50 text-red-700',
+  'Indian Pink': 'bg-yellow-100 text-yellow-800',
+  'Standing Cypress': 'bg-rose-50 text-rose-700',
+  'Red Buckeye': 'bg-emerald-100 text-emerald-800',
+  'Wild Columbine': 'bg-violet-100 text-violet-800',
+  'Spotted Jewelweed': 'bg-orange-50 text-orange-700',
+  'Bottlebrush Buckeye': 'bg-lime-100 text-lime-800',
+  'Plumleaf Azalea': 'bg-rose-100 text-rose-700',
+  'Native Azaleas': 'bg-pink-50 text-pink-700',
+  'Buttonbush': 'bg-teal-100 text-teal-800',
+};
+---
+
+<BaseLayout
+  title="Native Plants for Hummingbirds — Southeast US | Southeast Hummingbirds"
+  description="Native plants that attract hummingbirds in Georgia, Florida, South Carolina, and Alabama. Plant for continuous blooms March through October."
+  schema={schema}
+>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li>
+        <a href="/" class="hover:text-emerald-brand transition-colors">Home</a>
+      </li>
+      <li aria-hidden="true">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li>
+        <span class="text-navy font-medium">Native Plants</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero / Intro -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h1 class="text-navy font-heading">Native Plants for Hummingbirds</h1>
+      <p class="mt-2 text-emerald-brand font-medium text-lg">Southeast US: Georgia, Florida, South Carolina & Alabama</p>
+    </div>
+    <div class="mt-8 max-w-3xl space-y-4 text-gray-700 leading-relaxed">
+      <p>
+        Native plants are the foundation of a hummingbird-friendly garden. Unlike ornamental cultivars, native
+        species have co-evolved with local wildlife and provide complete nutrition: energy-rich nectar, the tiny
+        insects hummingbirds need for protein, natural nesting materials, and protective shelter.
+      </p>
+      <p>
+        By selecting a mix of species with staggered bloom times, you can maintain continuous flowering
+        from early March through late October, covering the full hummingbird season in the Southeast.
+        Native plants also require less water, fewer fertilizers, and no pesticides once established.
+      </p>
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="#bloom-calendar" class="inline-flex items-center gap-2 bg-emerald-brand text-white font-semibold px-5 py-2.5 rounded-xl hover:bg-emerald-dark transition-colors text-sm">
+        View Bloom Calendar
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </a>
+      <a href="#where-to-buy" class="inline-flex items-center gap-2 border-2 border-emerald-brand text-emerald-brand font-semibold px-5 py-2.5 rounded-xl hover:bg-emerald-brand hover:text-white transition-colors text-sm">
+        Where to Buy
+      </a>
+    </div>
+  </section>
+
+  <!-- Top-Tier Plants -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <h2 class="text-navy font-heading">Top-Tier Plants</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">
+          These are the most reliable, longest-blooming native plants for attracting hummingbirds in the Southeast. Start with these for maximum impact.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {topTierPlants.map((plant) => (
+          <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="bg-emerald-brand px-5 py-3">
+              <h3 class="text-white font-heading text-lg font-bold">{plant.name}</h3>
+              <p class="text-emerald-100 text-sm italic">{plant.scientificName}</p>
+            </div>
+            <div class="p-5 space-y-3">
+              <div class="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Bloom Time</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.bloomTime}</p>
+                </div>
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Light</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.light}</p>
+                </div>
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Water</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.water}</p>
+                </div>
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Height</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.height}</p>
+                </div>
+              </div>
+              <div class="pt-2 border-t border-gray-100">
+                <p class="text-gray-600 text-sm leading-relaxed">{plant.notes}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mid-Tier Plants -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <h2 class="text-navy font-heading">Mid-Tier Plants</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">
+          Excellent supporting species that fill bloom gaps and add diversity. Pair these with top-tier plants for a well-rounded garden.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {midTierPlants.map((plant) => (
+          <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="bg-emerald-brand/90 px-5 py-3">
+              <h3 class="text-white font-heading text-lg font-bold">{plant.name}</h3>
+              <p class="text-emerald-100 text-sm italic">{plant.scientificName}</p>
+            </div>
+            <div class="p-5 space-y-3">
+              <div class="grid grid-cols-2 gap-3 text-sm">
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Bloom Time</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.bloomTime}</p>
+                </div>
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Light</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.light}</p>
+                </div>
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Water</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.water}</p>
+                </div>
+                <div>
+                  <span class="text-gray-400 text-xs uppercase tracking-wider font-medium">Height</span>
+                  <p class="text-navy font-medium mt-0.5">{plant.height}</p>
+                </div>
+              </div>
+              <div class="pt-2 border-t border-gray-100">
+                <p class="text-gray-600 text-sm leading-relaxed">{plant.notes}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Native Shrubs & Trees -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <h2 class="text-navy font-heading">Native Shrubs & Trees</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">
+          Larger plants that provide structure, shelter, and nesting sites along with their blooms.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {shrubs.map((shrub) => (
+          <article class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-navy font-heading text-lg font-bold">{shrub.name}</h3>
+                <p class="text-gray-500 text-sm italic">{shrub.scientificName}</p>
+              </div>
+              <span class="flex-shrink-0 bg-emerald-brand/10 text-emerald-brand text-xs font-semibold px-3 py-1 rounded-full">
+                {shrub.bloomTime}
+              </span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm leading-relaxed">{shrub.notes}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bloom Calendar -->
+  <section id="bloom-calendar" class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <h2 class="text-navy font-heading">Bloom Calendar</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">
+          Plan your garden for continuous blooms throughout the hummingbird season. Each row shows which native plants are flowering that month.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        {bloomCalendar.map((entry) => {
+          const isCurrentMonth = entry.month === currentMonth;
+          return (
+            <div
+              class:list={[
+                'rounded-2xl p-4 sm:p-5 transition-all',
+                isCurrentMonth
+                  ? 'bg-emerald-brand text-white shadow-lg ring-2 ring-emerald-brand ring-offset-2'
+                  : 'bg-white border border-gray-100 shadow-sm',
+              ]}
+            >
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                <div class="flex items-center gap-3 sm:w-32 flex-shrink-0">
+                  {isCurrentMonth && (
+                    <span class="w-2 h-2 bg-white rounded-full animate-pulse flex-shrink-0" />
+                  )}
+                  <h3 class:list={[
+                    'font-heading font-bold text-lg',
+                    isCurrentMonth ? 'text-white' : 'text-navy',
+                  ]}>
+                    {entry.month}
+                  </h3>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  {entry.plants.map((plant) => (
+                    <span
+                      class:list={[
+                        'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium',
+                        isCurrentMonth
+                          ? 'bg-white/20 text-white'
+                          : (plantColors[plant] || 'bg-gray-100 text-gray-700'),
+                      ]}
+                    >
+                      {plant}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Where to Buy -->
+  <section id="where-to-buy" class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mb-10">
+        <h2 class="text-navy font-heading">Where to Buy Native Plants</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">
+          Support local conservation by purchasing from native plant nurseries and societies in your state.
+          Many hold annual plant sales with expert advice on species selection and garden design.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {buyLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group bg-white rounded-2xl shadow-sm border border-gray-100 p-6 hover:shadow-lg hover:border-emerald-200 transition-all"
+          >
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-400 uppercase tracking-wider font-medium">{link.state}</span>
+                <h3 class="text-navy font-heading font-bold text-lg mt-1 group-hover:text-emerald-brand transition-colors">
+                  {link.name}
+                </h3>
+              </div>
+              <svg class="w-5 h-5 text-gray-300 group-hover:text-emerald-brand group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading text-xl">Sources</h2>
+      <ul class="mt-4 space-y-2">
+        {sources.map((source) => (
+          <li>
+            <a
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-emerald-brand hover:text-emerald-dark transition-colors text-sm underline underline-offset-2"
+            >
+              {source.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

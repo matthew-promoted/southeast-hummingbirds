@@ -1,0 +1,77 @@
+---
+const quickLinks = [
+  { href: '/migration', label: 'Migration Timing' },
+  { href: '/species', label: 'Species Guide' },
+  { href: '/feeders', label: 'Feeder Reviews' },
+  { href: '/nectar', label: 'Nectar Recipe' },
+];
+
+const moreLinks = [
+  { href: '/native-plants', label: 'Native Plants' },
+  { href: '/feeder-placement', label: 'Feeder Placement' },
+  { href: '/pest-control', label: 'Pest Control' },
+  { href: '/window-safety', label: 'Window Safety' },
+  { href: '/seasonal-calendar', label: 'Seasonal Calendar' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto">
+  <!-- Watercolor banner -->
+  <div class="relative overflow-hidden">
+    <img
+      src="/images/watercolor-landscape.png"
+      alt="Watercolor illustration of a Ruby-throated Hummingbird hovering over a mountain river canyon"
+      class="w-full h-48 sm:h-56 md:h-64 object-cover"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-navy via-navy/60 to-transparent"></div>
+  </div>
+
+  <!-- Footer content -->
+  <div class="bg-navy text-white/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- About -->
+        <div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="/images/hummingbird-logo-sm.png" alt="" class="w-10 h-auto opacity-90" width="40" height="20" />
+            <h3 class="font-heading font-bold text-white text-lg">Southeast Hummingbirds</h3>
+          </div>
+          <p class="text-sm leading-relaxed">
+            Your guide to attracting, feeding, and identifying hummingbirds in Georgia, Florida, South Carolina, and Alabama.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-3">Guides</h4>
+          <ul class="space-y-2">
+            {quickLinks.map(link => (
+              <li>
+                <a href={link.href} class="text-sm hover:text-emerald-light transition-colors">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- More -->
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm uppercase tracking-wider mb-3">More Resources</h4>
+          <ul class="space-y-2">
+            {moreLinks.map(link => (
+              <li>
+                <a href={link.href} class="text-sm hover:text-emerald-light transition-colors">{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 mt-8 pt-8 text-center text-sm text-white/50">
+        <p>&copy; {year} Southeast Hummingbirds. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,458 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NectarCalculator from '../components/NectarCalculator.tsx';
+import NectarFreshness from '../components/NectarFreshness.tsx';
+
+const title = 'Homemade Hummingbird Nectar Recipe — The Only Guide You Need | Southeast Hummingbirds';
+const description = 'The perfect hummingbird nectar recipe: 4 parts water, 1 part white sugar. Learn what to never use and how often to change nectar.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Make Homemade Hummingbird Nectar',
+  description: 'The perfect hummingbird nectar recipe using a 4:1 ratio of water to plain white sugar.',
+  totalTime: 'PT5M',
+  supply: [
+    { '@type': 'HowToSupply', name: 'Water' },
+    { '@type': 'HowToSupply', name: 'Plain white granulated sugar' },
+  ],
+  tool: [
+    { '@type': 'HowToTool', name: 'Measuring cup' },
+    { '@type': 'HowToTool', name: 'Spoon or whisk' },
+    { '@type': 'HowToTool', name: 'Container with lid (for storage)' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      name: 'Measure water',
+      text: 'Measure the desired amount of water. Tap water is fine.',
+      position: 1,
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Add sugar',
+      text: 'Add plain white granulated sugar at a 4:1 ratio (4 parts water to 1 part sugar).',
+      position: 2,
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Stir until dissolved',
+      text: 'Stir or shake the mixture until the sugar is completely dissolved. Boiling is not required.',
+      position: 3,
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Cool completely',
+      text: 'Allow the nectar to cool to room temperature before filling your feeder.',
+      position: 4,
+    },
+    {
+      '@type': 'HowToStep',
+      name: 'Store extras',
+      text: 'Store unused nectar in the refrigerator for up to 2 weeks.',
+      position: 5,
+    },
+  ],
+};
+
+const batchSizes = [
+  { size: 'Small', water: '1 cup', sugar: '\u00BC cup' },
+  { size: 'Medium', water: '2 cups', sugar: '\u00BD cup' },
+  { size: 'Large', water: '4 cups', sugar: '1 cup' },
+];
+
+const dangerIngredients = [
+  {
+    name: 'Red dye',
+    why: 'Unnecessary (feeder color attracts birds) and potentially harmful \u2014 no studies prove safety in hummingbirds.',
+    severity: 'high',
+  },
+  {
+    name: 'Honey',
+    why: 'Promotes fatal fungal growth (Candida); ferments rapidly; can contain botulism spores.',
+    severity: 'high',
+  },
+  {
+    name: 'Artificial sweeteners',
+    why: 'No nutritional value; birds may starve while feeling full.',
+    severity: 'high',
+  },
+  {
+    name: 'Brown / raw / organic sugar',
+    why: 'Contains iron and other minerals that can be harmful to hummingbirds in high concentrations.',
+    severity: 'medium',
+  },
+  {
+    name: 'Powdered sugar',
+    why: 'Contains cornstarch and anti-caking agents.',
+    severity: 'medium',
+  },
+  {
+    name: 'Corn syrup',
+    why: 'Wrong sugar type; not what hummingbirds evolved to digest.',
+    severity: 'medium',
+  },
+  {
+    name: 'Fruit juice',
+    why: 'Ferments quickly; attracts insects; unnecessary.',
+    severity: 'low',
+  },
+];
+
+const badSigns = [
+  'Cloudy appearance',
+  'Floating particles',
+  'Black mold spots',
+  'Fermented or sour smell',
+  'Stringy residue in feeder',
+];
+
+const instructions = [
+  {
+    step: 1,
+    title: 'Measure water',
+    detail: 'Tap water is fine. Use the batch sizes table above or the calculator to determine how much you need.',
+    icon: 'droplet',
+  },
+  {
+    step: 2,
+    title: 'Add sugar',
+    detail: 'Use plain white granulated sugar only. Measure \u00BC cup sugar for each 1 cup of water.',
+    icon: 'cube',
+  },
+  {
+    step: 3,
+    title: 'Stir until dissolved',
+    detail: 'Stir or shake until the sugar is fully dissolved. No need to heat the water (see below).',
+    icon: 'stir',
+  },
+  {
+    step: 4,
+    title: 'Cool completely',
+    detail: 'If you heated the water, let the nectar cool to room temperature before filling your feeder.',
+    icon: 'timer',
+  },
+  {
+    step: 5,
+    title: 'Store extras',
+    detail: 'Refrigerate unused nectar in a sealed container for up to 2 weeks.',
+    icon: 'fridge',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li>
+        <a href="/" class="hover:text-emerald-brand transition-colors">Home</a>
+      </li>
+      <li aria-hidden="true">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li>
+        <span class="text-navy font-medium" aria-current="page">Nectar Recipe</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 md:pt-12 md:pb-16">
+    <div class="max-w-3xl">
+      <h1 class="text-navy font-heading">
+        Homemade Hummingbird
+        <span class="text-emerald-brand">Nectar Recipe</span>
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+        The only recipe you need. Simple, cheap, and better for the birds than anything you can buy in a store.
+      </p>
+    </div>
+  </section>
+
+  <!-- The Recipe -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-navy font-heading">The Only Recipe You Need</h2>
+        <p class="mt-3 text-gray-600 text-lg">
+          This matches the ~20% sugar concentration found naturally in flowers pollinated by hummingbirds.
+        </p>
+      </div>
+
+      <!-- Big Ratio Display -->
+      <div class="mt-10 max-w-lg mx-auto">
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 text-center">
+          <div class="flex items-center justify-center gap-4 md:gap-8">
+            <div>
+              <div class="text-6xl md:text-7xl font-bold text-blue-600 font-heading">4</div>
+              <div class="mt-2 text-sm font-medium text-blue-600 uppercase tracking-wider">Parts Water</div>
+            </div>
+            <div class="text-4xl font-bold text-gray-300">:</div>
+            <div>
+              <div class="text-6xl md:text-7xl font-bold text-amber-500 font-heading">1</div>
+              <div class="mt-2 text-sm font-medium text-amber-600 uppercase tracking-wider">Part Sugar</div>
+            </div>
+          </div>
+          <p class="mt-6 text-sm text-gray-500">Plain white granulated sugar + tap water. That's it.</p>
+        </div>
+      </div>
+
+      <!-- Batch Sizes Table -->
+      <div class="mt-8 max-w-lg mx-auto">
+        <div class="overflow-x-auto rounded-2xl border border-gray-100 shadow-sm">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-navy text-white">
+                <th class="px-6 py-3 text-sm font-heading font-bold uppercase tracking-wider">Batch Size</th>
+                <th class="px-6 py-3 text-sm font-heading font-bold uppercase tracking-wider">Water</th>
+                <th class="px-6 py-3 text-sm font-heading font-bold uppercase tracking-wider">White Sugar</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {batchSizes.map((batch, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  <td class="px-6 py-3 text-sm font-semibold text-navy">{batch.size}</td>
+                  <td class="px-6 py-3 text-sm text-blue-600 font-medium">{batch.water}</td>
+                  <td class="px-6 py-3 text-sm text-amber-600 font-medium">{batch.sugar}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Calculator -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <h2 class="text-navy font-heading">Nectar Calculator</h2>
+        <p class="mt-3 text-gray-600 leading-relaxed">
+          Need a custom batch size? Use the calculator to get exact measurements. The 4:1 ratio always stays the same, whether you're making a single cup or a full gallon.
+        </p>
+        <div class="mt-6 space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-bold text-sm">1</span>
+            <p class="text-sm text-gray-600 pt-1.5">Select a preset or drag the slider to your desired batch size.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-bold text-sm">2</span>
+            <p class="text-sm text-gray-600 pt-1.5">Read the exact water and sugar measurements below.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-bold text-sm">3</span>
+            <p class="text-sm text-gray-600 pt-1.5">Stir until dissolved, cool, and fill your feeder.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <NectarCalculator client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructions -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-navy font-heading">Step-by-Step Instructions</h2>
+        <p class="mt-3 text-gray-600 text-lg">Five minutes is all it takes.</p>
+      </div>
+
+      <div class="mt-10 max-w-2xl mx-auto space-y-4">
+        {instructions.map((item) => (
+          <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-emerald-brand rounded-full flex items-center justify-center text-white font-bold font-heading">
+              {item.step}
+            </span>
+            <div>
+              <h3 class="font-heading font-bold text-navy text-lg">{item.title}</h3>
+              <p class="mt-1 text-sm text-gray-600 leading-relaxed">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Do I Need to Boil? -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-navy font-heading">Do I Need to Boil the Water?</h2>
+
+      <div class="mt-6 bg-emerald-50 border border-emerald-100 rounded-2xl p-6">
+        <p class="text-lg font-semibold text-emerald-brand">Short answer: No.</p>
+        <p class="mt-3 text-gray-700 leading-relaxed">
+          The Smithsonian National Zoo's official guidance is that the water does not need to be boiled. Just stir or shake your mixture until the sugar is fully dissolved.
+        </p>
+      </div>
+
+      <div class="mt-6 space-y-4">
+        <h3 class="text-navy font-heading text-lg">Why some people boil anyway:</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-3 text-gray-600">
+            <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Removes chlorine (minimal benefit)</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-600">
+            <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Helps sugar dissolve faster</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-600">
+            <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>May slightly extend shelf life (debated)</span>
+          </li>
+        </ul>
+        <p class="text-sm text-gray-500 mt-4 leading-relaxed">
+          Any bacteria introduced during mixing will be overwhelmed by the high sugar concentration. Since you're changing nectar every 2-3 days in summer anyway, boiling provides negligible benefit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What NOT to Use -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-ruby font-heading flex items-center justify-center gap-2">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+          </svg>
+          What NOT to Use
+        </h2>
+        <p class="mt-3 text-gray-600 text-lg">
+          These ingredients can seriously harm or kill hummingbirds. Use only plain white sugar.
+        </p>
+      </div>
+
+      <div class="mt-10 max-w-3xl mx-auto">
+        <div class="overflow-x-auto rounded-2xl border border-ruby/10 shadow-sm">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-ruby text-white">
+                <th class="px-6 py-4 text-sm font-heading font-bold uppercase tracking-wider">Ingredient</th>
+                <th class="px-6 py-4 text-sm font-heading font-bold uppercase tracking-wider">Why It's Harmful</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {dangerIngredients.map((item, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-red-50/30'}>
+                  <td class="px-6 py-4 text-sm font-semibold text-navy whitespace-nowrap">
+                    <span class="flex items-center gap-2">
+                      <svg class={`w-4 h-4 flex-shrink-0 ${item.severity === 'high' ? 'text-ruby' : 'text-amber-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      {item.name}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-sm text-gray-600">{item.why}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Plain White Sugar? -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-navy font-heading">Why Plain White Sugar?</h2>
+
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div class="w-12 h-12 bg-emerald-brand/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-emerald-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-navy text-lg">Pure Sucrose</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+            White granulated sugar is pure sucrose, the same sugar found in flower nectar. Hummingbirds have evolved specifically to digest sucrose efficiently.
+          </p>
+        </div>
+        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div class="w-12 h-12 bg-ruby/10 rounded-xl flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-ruby" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
+          <h3 class="font-heading font-bold text-navy text-lg">No Iron Overload</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+            "Raw" or "organic" sugars contain iron and molasses residues. Hummingbirds cannot process excess iron, which can accumulate and cause organ damage over time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nectar Freshness -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-navy font-heading">When to Change Your Nectar</h2>
+          <p class="mt-3 text-gray-600 leading-relaxed">
+            Nectar spoils faster in warm weather. In the Southeast's hot summers, you may need to change nectar every day or two. Use the interactive tool to find out the right schedule for your current temperature.
+          </p>
+
+          <!-- Signs Nectar Has Gone Bad -->
+          <div class="mt-8">
+            <h3 class="text-navy font-heading text-lg">Signs Nectar Has Gone Bad</h3>
+            <p class="mt-2 text-sm text-gray-600">Change your nectar immediately if you notice any of the following:</p>
+            <ul class="mt-4 space-y-2.5">
+              {badSigns.map((sign) => (
+                <li class="flex items-center gap-3">
+                  <span class="flex-shrink-0 w-6 h-6 bg-ruby/10 rounded-full flex items-center justify-center">
+                    <svg class="w-3.5 h-3.5 text-ruby" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01" />
+                    </svg>
+                  </span>
+                  <span class="text-sm text-gray-700 font-medium">{sign}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div>
+          <NectarFreshness client:visible />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-navy font-heading text-xl">Sources</h2>
+      <ul class="mt-4 space-y-2 text-sm text-gray-600">
+        <li>
+          <a href="https://nationalzoo.si.edu/migratory-birds/hummingbird-nectar-recipe" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark transition-colors underline">
+            Smithsonian National Zoo
+          </a> &mdash; Hummingbird nectar recipe and guidelines
+        </li>
+        <li>
+          <a href="https://www.allaboutbirds.org/news/should-i-use-red-food-coloring-in-hummingbird-food/" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark transition-colors underline">
+            Cornell Lab of Ornithology
+          </a> &mdash; Red food coloring research and guidance
+        </li>
+        <li>
+          <a href="https://www.audubon.org/magazine/are-hummingbirds-really-attracted-red-and-dyeing-their-food-safe" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark transition-colors underline">
+            Audubon Society
+          </a> &mdash; Red dye safety research
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

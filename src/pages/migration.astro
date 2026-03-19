@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { regions } from '../data/migration';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Hummingbird Migration Timing — Southeast US',
+  description: 'When do hummingbirds arrive and depart? Regional migration data for Georgia, Florida, South Carolina, and Alabama.',
+  author: {
+    '@type': 'Organization',
+    name: 'Southeast Hummingbirds',
+  },
+};
+---
+
+<BaseLayout
+  title="Hummingbird Migration Timing — Southeast US | Southeast Hummingbirds"
+  description="When do hummingbirds arrive and depart? Regional migration data for Georgia, Florida, South Carolina, and Alabama."
+  schema={schema}
+>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li>
+        <a href="/" class="hover:text-emerald-brand transition-colors">Home</a>
+      </li>
+      <li aria-hidden="true">
+        <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li>
+        <span class="text-navy font-medium" aria-current="page">Migration Timing</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 md:pt-12 md:pb-16">
+    <div class="max-w-3xl">
+      <h1 class="text-navy font-heading">
+        Hummingbird Migration Timing
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-600 leading-relaxed">
+        The <strong class="text-navy">Ruby-throated Hummingbird</strong> (<em>Archilochus colubris</em>) is the only
+        breeding hummingbird species in the eastern United States. Each spring, these remarkable birds cross the Gulf
+        of Mexico in a single non-stop flight of 500+ miles to reach the Southeast.
+      </p>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Timing varies significantly by latitude and proximity to the coast. Use the table below to find when
+        hummingbirds typically arrive and depart in your specific area of Georgia, Florida, South Carolina, or Alabama.
+      </p>
+    </div>
+  </section>
+
+  <!-- Migration Table -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading mb-2">Regional Migration Schedule</h2>
+      <p class="text-gray-600 mb-8 max-w-2xl">
+        Data based on eBird observations and historical records. Dates are approximate and vary year to year with weather patterns.
+      </p>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="bg-navy text-white">
+                <th class="px-4 py-3.5 text-sm font-heading font-semibold whitespace-nowrap">Region</th>
+                <th class="px-4 py-3.5 text-sm font-heading font-semibold whitespace-nowrap">Zone</th>
+                <th class="px-4 py-3.5 text-sm font-heading font-semibold whitespace-nowrap">Spring Arrival</th>
+                <th class="px-4 py-3.5 text-sm font-heading font-semibold whitespace-nowrap">Peak Activity</th>
+                <th class="px-4 py-3.5 text-sm font-heading font-semibold whitespace-nowrap">Fall Departure</th>
+                <th class="px-4 py-3.5 text-sm font-heading font-semibold whitespace-nowrap">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+              {regions.map((region, i) => (
+                <tr class:list={[i % 2 === 0 ? 'bg-white' : 'bg-mint/30', 'hover:bg-emerald-brand/5 transition-colors']}>
+                  <td class="px-4 py-3.5 text-sm font-semibold text-navy whitespace-nowrap">{region.region}</td>
+                  <td class="px-4 py-3.5 text-sm text-gray-600">
+                    <span class:list={[
+                      'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium',
+                      region.zone === 'Coastal' ? 'bg-blue-50 text-blue-700' :
+                      region.zone === 'Coastal Plain' ? 'bg-sky-50 text-sky-700' :
+                      region.zone === 'Inland' ? 'bg-amber-50 text-amber-700' :
+                      region.zone === 'Piedmont' ? 'bg-orange-50 text-orange-700' :
+                      region.zone === 'Mountains' ? 'bg-purple-50 text-purple-700' :
+                      'bg-gray-50 text-gray-700'
+                    ]}>
+                      {region.zone}
+                    </span>
+                  </td>
+                  <td class="px-4 py-3.5 text-sm text-emerald-brand font-medium whitespace-nowrap">{region.springArrival}</td>
+                  <td class="px-4 py-3.5 text-sm text-gray-700 whitespace-nowrap">{region.peakActivity}</td>
+                  <td class="px-4 py-3.5 text-sm text-ruby font-medium whitespace-nowrap">{region.fallDeparture}</td>
+                  <td class="px-4 py-3.5 text-sm text-gray-500 italic">{region.notes || '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Key -->
+      <div class="mt-6 flex flex-wrap gap-4 text-sm text-gray-600">
+        <span class="flex items-center gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-emerald-brand"></span>
+          Spring arrival dates
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-3 h-3 rounded-full bg-ruby"></span>
+          Fall departure dates
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Patterns -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <h2 class="text-navy font-heading mb-8">Key Migration Patterns</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <div class="w-12 h-12 bg-emerald-brand/10 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-emerald-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-navy">Latitude Matters</h3>
+        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+          Southern areas (Florida, Gulf Coast) see arrivals as early as mid-February, while mountain areas in
+          north Georgia and upstate South Carolina may not see birds until late March or early April.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-navy">Coastal Advantage</h3>
+        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+          Coastal areas tend to receive birds earlier in spring and hold them later in fall. The moderating
+          effect of the ocean and concentration of insect food along the coast keeps birds active longer.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading font-bold text-navy">Put Feeders Out Early</h3>
+        <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+          Scout birds arrive 1&ndash;2 weeks before the main wave. Hang your feeders at least two weeks before
+          expected arrival dates to catch the earliest migrants.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Messaging -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-navy font-heading">Personalized Status on Our Home Page</h2>
+        <p class="mt-4 text-gray-600 leading-relaxed">
+          The geolocation widget on our <a href="/" class="text-emerald-brand hover:text-emerald-dark font-medium underline decoration-emerald-brand/30 underline-offset-2 transition-colors">home page</a>
+          uses your browser's location (with your permission) to detect which Southeast region you are in.
+          It then cross-references the migration table above to tell you:
+        </p>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+              <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+            </span>
+            <span class="text-gray-600">
+              <strong class="text-navy">Before season:</strong> When to expect arrivals in your area and when to put feeders out
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 bg-emerald-brand/10 rounded-full flex items-center justify-center">
+              <span class="w-2 h-2 bg-emerald-brand rounded-full"></span>
+            </span>
+            <span class="text-gray-600">
+              <strong class="text-navy">During peak season:</strong> Reminders to keep nectar fresh and feeders clean
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 bg-amber-100 rounded-full flex items-center justify-center">
+              <span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+            </span>
+            <span class="text-gray-600">
+              <strong class="text-navy">During fall migration:</strong> Encouragement to keep feeders up for stragglers
+            </span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 flex-shrink-0 w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
+              <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+            </span>
+            <span class="text-gray-600">
+              <strong class="text-navy">After season:</strong> A reminder of when birds will return, and a note about rare winter visitors
+            </span>
+          </li>
+        </ul>
+        <p class="mt-6 text-sm text-gray-500">
+          Your location data stays in your browser and is never sent to our servers. The matching is done entirely client-side.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <h2 class="text-navy font-heading mb-8">Migration Tips for Southeast Birders</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <h3 class="text-lg font-heading font-bold text-navy">Spring Feeder Strategy</h3>
+        <p class="mt-2 text-gray-600 leading-relaxed text-sm">
+          Put feeders out at least two weeks before expected arrival. Start with one feeder of fresh nectar
+          (4:1 water to sugar ratio). Scouts will find it and attract more birds. Increase the number of
+          feeders as the season progresses.
+        </p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <h3 class="text-lg font-heading font-bold text-navy">Fall Feeder Strategy</h3>
+        <p class="mt-2 text-gray-600 leading-relaxed text-sm">
+          Keep feeders up for at least two weeks after you see the last bird. Contrary to popular myth,
+          leaving feeders up does <strong>not</strong> prevent hummingbirds from migrating. In fact, late
+          feeders can be a lifeline for exhausted stragglers.
+        </p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <h3 class="text-lg font-heading font-bold text-navy">Winter Visitors</h3>
+        <p class="mt-2 text-gray-600 leading-relaxed text-sm">
+          Consider keeping one feeder up through winter, especially along the Gulf Coast and in South
+          Florida. Rufous, Black-chinned, and Calliope Hummingbirds are rare but regular winter visitors
+          to the Southeast. See our <a href="/species" class="text-emerald-brand hover:text-emerald-dark font-medium underline decoration-emerald-brand/30 underline-offset-2 transition-colors">Species Guide</a> for identification help.
+        </p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+        <h3 class="text-lg font-heading font-bold text-navy">Track Your Sightings</h3>
+        <p class="mt-2 text-gray-600 leading-relaxed text-sm">
+          Report your first-of-season sighting to <a href="https://ebird.org" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark font-medium underline decoration-emerald-brand/30 underline-offset-2 transition-colors">eBird</a>
+          to help scientists refine migration timing data. Your observations contribute to the citizen science
+          data that makes guides like this one possible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Step -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-navy font-heading">Plan Your Season Month by Month</h2>
+      <p class="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">
+        Our seasonal calendar gives you a detailed month-by-month guide covering feeding schedules,
+        feeder maintenance, and what to watch for throughout the year.
+      </p>
+      <a
+        href="/seasonal-calendar"
+        class="inline-flex items-center gap-2 mt-8 bg-emerald-brand text-white font-semibold px-8 py-3.5 rounded-xl hover:bg-emerald-dark transition-colors shadow-sm"
+      >
+        View Seasonal Calendar
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <h2 class="text-navy font-heading text-xl mb-6">Sources</h2>
+    <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+      <ul class="space-y-3 text-sm text-gray-600">
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5 font-bold">1.</span>
+          <span>
+            Cornell Lab of Ornithology. "Ruby-throated Hummingbird."
+            <em>All About Birds.</em>
+            <a href="https://www.allaboutbirds.org/guide/Ruby-throated_Hummingbird" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark underline decoration-emerald-brand/30 underline-offset-2 transition-colors">allaboutbirds.org</a>
+          </span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5 font-bold">2.</span>
+          <span>
+            eBird. "Ruby-throated Hummingbird: Occurrence Maps."
+            <a href="https://ebird.org/species/rthhum" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark underline decoration-emerald-brand/30 underline-offset-2 transition-colors">ebird.org</a>
+          </span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5 font-bold">3.</span>
+          <span>
+            Williamson, S. L. (2001). <em>A Field Guide to Hummingbirds of North America (Peterson Field Guides).</em> Houghton Mifflin.
+          </span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5 font-bold">4.</span>
+          <span>
+            The Hummingbird Society. "Migration Map."
+            <a href="https://www.hummingbirdsociety.org" target="_blank" rel="noopener noreferrer" class="text-emerald-brand hover:text-emerald-dark underline decoration-emerald-brand/30 underline-offset-2 transition-colors">hummingbirdsociety.org</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,385 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Hummingbird Feeder Placement Guide',
+  description: 'Where to hang hummingbird feeders for maximum activity. Optimal placement, dealing with territorial males, and seasonal strategies.',
+  author: {
+    '@type': 'Organization',
+    name: 'Southeast Hummingbirds',
+  },
+};
+
+const placementFactors = [
+  {
+    factor: 'Sun Exposure',
+    recommendation: 'Partial shade preferred',
+    details: 'Morning sun with afternoon shade keeps nectar fresh longer and prevents overheating. Full sun accelerates fermentation.',
+    icon: '☀️',
+    priority: 'High',
+  },
+  {
+    factor: 'Visibility',
+    recommendation: 'Line of sight from indoors',
+    details: 'Place where you can see the feeder from a window or porch. The best feeder is one you actually watch and remember to maintain.',
+    icon: '👁️',
+    priority: 'High',
+  },
+  {
+    factor: 'Height',
+    recommendation: '4 to 6 feet off the ground',
+    details: 'High enough to discourage cats and other predators, low enough for easy filling and cleaning.',
+    icon: '📏',
+    priority: 'Medium',
+  },
+  {
+    factor: 'Distance from Windows',
+    recommendation: 'Within 3 feet or beyond 30 feet',
+    details: 'The 3/30 rule: feeders very close to windows reduce lethal strike speed. Between 3 and 30 feet is the danger zone.',
+    icon: '🪟',
+    priority: 'High',
+  },
+  {
+    factor: 'Near Perching Spots',
+    recommendation: 'Within 10-15 feet of a tree or shrub',
+    details: 'Hummingbirds perch between feeding bouts. Nearby branches let them rest and guard the feeder without leaving the area.',
+    icon: '🌿',
+    priority: 'Medium',
+  },
+  {
+    factor: 'Away from Seed Feeders',
+    recommendation: 'At least 15 feet separation',
+    details: 'Larger birds at seed feeders intimidate hummingbirds. Separate feeding stations reduce competition and stress.',
+    icon: '↔️',
+    priority: 'Medium',
+  },
+];
+
+const territorialSolutions = [
+  {
+    strategy: 'Spread feeders apart',
+    description: 'Place feeders 15-20 feet apart and out of sight of each other. A dominant male cannot guard what he cannot see. Position feeders on different sides of the house or around corners.',
+    effectiveness: 'Most effective',
+    color: 'emerald-brand',
+  },
+  {
+    strategy: 'Cluster strategy',
+    description: 'Hang 3 or more feeders in a tight cluster (within 2-3 feet). This overwhelms the dominant male because he cannot chase every bird simultaneously. The sheer number of feeding ports defeats the territorial instinct.',
+    effectiveness: 'Very effective',
+    color: 'emerald-brand',
+  },
+  {
+    strategy: 'Mix sun and shade',
+    description: 'Place one feeder in full sun and another in deep shade. Territorial males tend to favor one light condition, leaving the other feeder available for subordinate birds and females.',
+    effectiveness: 'Moderately effective',
+    color: 'emerald-light',
+  },
+];
+
+const seasonalAdjustments = [
+  {
+    season: 'Early Spring (March-April)',
+    placement: 'Highly visible, near red flowers or garden beds',
+    reason: 'Scouts are looking for food sources after migration. Make feeders easy to find.',
+    tip: 'Hang feeders 1-2 weeks before expected arrival date for your area.',
+  },
+  {
+    season: 'Peak Summer (June-August)',
+    placement: 'More shade, multiple locations',
+    reason: 'Heat accelerates nectar spoilage. More feeders accommodate breeding populations.',
+    tip: 'Change nectar every 2-3 days in 90+ degree heat.',
+  },
+  {
+    season: 'Late Summer (August-September)',
+    placement: 'Add extra feeders, spread widely',
+    reason: 'Migrating birds pass through. Territorial males are at peak aggression with more visitors.',
+    tip: 'This is your busiest period. Double your feeders if possible.',
+  },
+  {
+    season: 'Fall (October-November)',
+    placement: 'Consolidate to 1-2 well-maintained feeders',
+    reason: 'Fewer birds remain. Stragglers and late migrants need reliable food sources.',
+    tip: 'Keep at least one feeder up through November for late migrants.',
+  },
+  {
+    season: 'Winter (December-February)',
+    placement: 'Sheltered spot near house, protected from wind',
+    reason: 'Rare overwintering Rufous or Calliope hummingbirds need warmth and shelter.',
+    tip: 'Bring feeders inside overnight if temperatures drop below freezing.',
+  },
+];
+---
+
+<BaseLayout
+  title="Hummingbird Feeder Placement Guide | Southeast Hummingbirds"
+  description="Where to hang hummingbird feeders for maximum activity. Optimal placement, dealing with territorial males, and seasonal strategies."
+  schema={schema}
+>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li>
+        <a href="/" class="hover:text-emerald-brand transition-colors">Home</a>
+      </li>
+      <li>
+        <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li>
+        <span class="text-navy font-medium">Feeder Placement</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Header -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 md:pt-12 md:pb-16">
+    <div class="max-w-3xl">
+      <span class="inline-block bg-emerald-brand/10 text-emerald-brand text-sm font-semibold px-3 py-1 rounded-full mb-4">
+        Placement Guide
+      </span>
+      <h1 class="text-navy font-heading">
+        Where to Hang Your Hummingbird Feeders
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+        Feeder placement matters more than feeder brand. The right location means more birds, less nectar spoilage, and fewer pest problems. Here is everything you need to know about positioning feeders for maximum hummingbird activity.
+      </p>
+    </div>
+  </section>
+
+  <!-- Optimal Placement Factors -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading text-center">Optimal Placement Factors</h2>
+      <p class="mt-3 text-gray-600 text-center text-lg max-w-2xl mx-auto">
+        Six key factors that determine feeder success, ranked by importance.
+      </p>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {placementFactors.map(item => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+            <div class="flex items-start justify-between mb-3">
+              <span class="text-3xl">{item.icon}</span>
+              <span class:list={[
+                'text-xs font-semibold px-2.5 py-1 rounded-full',
+                item.priority === 'High'
+                  ? 'bg-ruby/10 text-ruby'
+                  : 'bg-emerald-brand/10 text-emerald-brand',
+              ]}>
+                {item.priority} priority
+              </span>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-navy">{item.factor}</h3>
+            <p class="mt-1 text-emerald-brand font-semibold text-sm">{item.recommendation}</p>
+            <p class="mt-2 text-gray-600 text-sm leading-relaxed">{item.details}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Reference Table (mobile-responsive) -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <h2 class="text-navy font-heading">Quick Reference</h2>
+    <p class="mt-2 text-gray-600">All placement factors at a glance.</p>
+
+    <div class="mt-6 overflow-x-auto rounded-2xl border border-gray-100 shadow-sm">
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr class="bg-mint">
+            <th class="px-4 py-3 font-heading font-semibold text-navy whitespace-nowrap">Factor</th>
+            <th class="px-4 py-3 font-heading font-semibold text-navy whitespace-nowrap">Recommendation</th>
+            <th class="px-4 py-3 font-heading font-semibold text-navy whitespace-nowrap">Priority</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {placementFactors.map((item, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+              <td class="px-4 py-3 font-medium text-navy whitespace-nowrap">
+                <span class="mr-2">{item.icon}</span>{item.factor}
+              </td>
+              <td class="px-4 py-3 text-gray-700">{item.recommendation}</td>
+              <td class="px-4 py-3">
+                <span class:list={[
+                  'text-xs font-semibold px-2 py-0.5 rounded-full',
+                  item.priority === 'High'
+                    ? 'bg-ruby/10 text-ruby'
+                    : 'bg-emerald-brand/10 text-emerald-brand',
+                ]}>
+                  {item.priority}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Territorial Male Problem -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="inline-block bg-ruby/10 text-ruby text-sm font-semibold px-3 py-1 rounded-full mb-4">
+          Common Problem
+        </span>
+        <h2 class="text-navy font-heading">The Territorial Male Problem</h2>
+        <p class="mt-4 text-gray-600 leading-relaxed">
+          Male Ruby-throated Hummingbirds are fiercely territorial. A dominant male will perch near a feeder and aggressively chase away every other bird, including females and juveniles. You will see dramatic dive-bombing displays and high-speed chases. While spectacular, this means only one bird gets to feed. The solution is strategic feeder placement.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {territorialSolutions.map((solution, i) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm relative">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="flex-shrink-0 w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg">
+                {i + 1}
+              </span>
+              <h3 class="text-lg font-heading font-bold text-navy">{solution.strategy}</h3>
+            </div>
+            <p class="text-gray-600 text-sm leading-relaxed">{solution.description}</p>
+            <div class="mt-4 pt-4 border-t border-gray-100">
+              <span class:list={[
+                'text-xs font-semibold px-2.5 py-1 rounded-full',
+                `bg-${solution.color}/10 text-${solution.color}`,
+              ]}>
+                {solution.effectiveness}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Pro tip callout -->
+      <div class="mt-8 bg-white border border-emerald-brand/20 rounded-2xl p-6 shadow-sm max-w-3xl mx-auto">
+        <div class="flex items-start gap-3">
+          <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-bold text-sm">
+            &#x2713;
+          </span>
+          <div>
+            <strong class="text-navy font-heading">Pro tip: Combine strategies.</strong>
+            <p class="mt-1 text-gray-600 text-sm leading-relaxed">
+              Use both spread-apart and cluster methods. Place one cluster of 3 feeders in the front yard and another single feeder in the back. The dominant male picks one group to guard, leaving the other completely open for other birds.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Moving Feeders -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h2 class="text-navy font-heading">Moving Feeders: Be Patient</h2>
+      <p class="mt-4 text-gray-600 leading-relaxed">
+        Hummingbirds have exceptional spatial memory. They remember exactly where every food source is and return to the same spots year after year. This is great for loyalty, but it means moving a feeder requires patience.
+      </p>
+
+      <div class="mt-8 space-y-4">
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-sm">1</span>
+          <div>
+            <strong class="text-navy">Move feeders gradually.</strong>
+            <p class="text-sm text-gray-600 mt-1">Shift the feeder 2-3 feet per day toward the new location. Abrupt moves can cause birds to lose the feeder entirely.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-sm">2</span>
+          <div>
+            <strong class="text-navy">Leave the old hook up temporarily.</strong>
+            <p class="text-sm text-gray-600 mt-1">Hang a second feeder at the new location while keeping the original for a few days. Remove the old one once birds find the new one.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-sm">3</span>
+          <div>
+            <strong class="text-navy">Expect 1-3 days of reduced activity.</strong>
+            <p class="text-sm text-gray-600 mt-1">Birds will find the new location. If activity does not resume after a week, the new spot may have issues (too exposed, too windy, or too close to predators).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seasonal Placement Adjustments -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading text-center">Seasonal Placement Adjustments</h2>
+      <p class="mt-3 text-gray-600 text-center text-lg max-w-2xl mx-auto">
+        Where to position feeders changes throughout the year as bird activity and weather shift.
+      </p>
+
+      <div class="mt-8 overflow-x-auto rounded-2xl border border-gray-100 shadow-sm bg-white">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="bg-navy text-white">
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Season</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Placement</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Why</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Tip</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {seasonalAdjustments.map((row, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+                <td class="px-4 py-3 font-medium text-navy whitespace-nowrap align-top">{row.season}</td>
+                <td class="px-4 py-3 text-gray-700 align-top min-w-[180px]">{row.placement}</td>
+                <td class="px-4 py-3 text-gray-600 align-top min-w-[200px]">{row.reason}</td>
+                <td class="px-4 py-3 text-emerald-brand font-medium align-top min-w-[200px]">{row.tip}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h2 class="text-navy font-heading">Sources &amp; Further Reading</h2>
+      <ul class="mt-4 space-y-3 text-sm text-gray-600">
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>Williamson, Sheri L. <em>Hummingbirds of North America</em>. Peterson Field Guides, Houghton Mifflin, 2001.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>The Cornell Lab of Ornithology. "All About Birds: Ruby-throated Hummingbird." <a href="https://www.allaboutbirds.org/guide/Ruby-throated_Hummingbird" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">allaboutbirds.org</a></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>Audubon Society. "Hummingbird Guide: Feeders." <a href="https://www.audubon.org/news/hummingbirds-home" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">audubon.org</a></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>U.S. Fish &amp; Wildlife Service. "Attracting Hummingbirds." <a href="https://www.fws.gov/story/attracting-hummingbirds" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">fws.gov</a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Related Guides -->
+  <section class="bg-navy text-white py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-center text-white">Related Guides</h2>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <a href="/pest-control" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Pest Control</h3>
+          <p class="mt-2 text-white/60 text-sm">Keep ants, bees, and wasps away from your feeders without harming birds.</p>
+        </a>
+        <a href="/feeders" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Best Feeders</h3>
+          <p class="mt-2 text-white/60 text-sm">Expert-tested feeder recommendations ranked by ease of cleaning.</p>
+        </a>
+        <a href="/window-safety" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Window Safety</h3>
+          <p class="mt-2 text-white/60 text-sm">Prevent window strikes with the 3-foot / 30-foot rule and proven solutions.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

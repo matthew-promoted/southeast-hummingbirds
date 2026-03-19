@@ -1,0 +1,361 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: 'Prevent Hummingbird Window Strikes',
+      description: 'Protect hummingbirds from window collisions. The 3-foot / 30-foot rule, proven solutions, and window-mount feeders.',
+      author: {
+        '@type': 'Organization',
+        name: 'Southeast Hummingbirds',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What is the 3-foot / 30-foot rule for preventing bird window strikes?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Place feeders and bird-attracting features either within 3 feet of windows or more than 30 feet away. Within 3 feet, birds cannot build enough speed for a fatal collision. Beyond 30 feet, birds are less likely to perceive window reflections as flyable space.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Why must window treatments be placed on the outside of glass?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Window strikes happen because birds see reflections of sky and vegetation on the exterior surface of glass. Decals and treatments placed on the inside are obscured by these exterior reflections and are far less effective. Treatments must be on the outside to break up the reflective surface birds see.',
+          },
+        },
+      ],
+    },
+  ],
+};
+
+const solutions = [
+  {
+    name: 'Window Decals / Stickers',
+    effectiveness: 'Moderate',
+    effectivenessColor: 'text-amber-600 bg-amber-50',
+    cost: '$5\u201315',
+    notes: 'Must be spaced no more than 2" apart horizontally and 4" vertically. Single hawk silhouettes alone are ineffective.',
+  },
+  {
+    name: 'BirdTape',
+    effectiveness: 'High',
+    effectivenessColor: 'text-emerald-700 bg-emerald-50',
+    cost: '$15\u201325',
+    notes: 'Translucent strips applied in rows. Lasts 4+ years. Easy DIY installation. Highly recommended.',
+  },
+  {
+    name: 'Acopian BirdSavers',
+    effectiveness: 'High',
+    effectivenessColor: 'text-emerald-700 bg-emerald-50',
+    cost: '$20\u201350+',
+    notes: 'Paracord hanging in vertical lines. Custom-made per window. Very effective and unobtrusive.',
+  },
+  {
+    name: 'Tempera Paint',
+    effectiveness: 'High',
+    effectivenessColor: 'text-emerald-700 bg-emerald-50',
+    cost: '$5\u201310',
+    notes: 'Painted patterns on exterior glass. Cheap and effective. Washes off with rain over time. Great for kids to help with.',
+  },
+  {
+    name: 'Window Screens',
+    effectiveness: 'Very High',
+    effectivenessColor: 'text-emerald-700 bg-emerald-50',
+    cost: '$20\u201360',
+    notes: 'Exterior screens eliminate reflections entirely. Dual purpose: also block insects.',
+  },
+  {
+    name: 'UV-Reflective Glass',
+    effectiveness: 'Very High',
+    effectivenessColor: 'text-emerald-700 bg-emerald-50',
+    cost: '$$$',
+    notes: 'Birds see UV light humans cannot. Specialty glass appears normal to us but visible to birds. Best for new construction.',
+  },
+  {
+    name: 'Bird Netting',
+    effectiveness: 'Very High',
+    effectivenessColor: 'text-emerald-700 bg-emerald-50',
+    cost: '$20\u201340',
+    notes: 'Taut netting 2\u20133" from glass acts as a trampoline. Birds bounce off safely. Must be properly tensioned.',
+  },
+];
+
+const sources = [
+  { label: 'American Bird Conservancy \u2014 Bird-Friendly Building Design', url: 'https://abcbirds.org/glass-collisions/' },
+  { label: 'Cornell Lab of Ornithology \u2014 Why Birds Hit Windows', url: 'https://www.allaboutbirds.org/news/why-birds-hit-windows-and-how-you-can-help-prevent-it/' },
+  { label: 'Audubon \u2014 Making Windows Safer for Birds', url: 'https://www.audubon.org/news/how-make-your-windows-safer-birds' },
+];
+---
+
+<BaseLayout
+  title="Prevent Hummingbird Window Strikes | Southeast Hummingbirds"
+  description="Protect hummingbirds from window collisions. The 3-foot / 30-foot rule, proven solutions, and window-mount feeders."
+  schema={schema}
+>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li>
+        <a href="/" class="hover:text-emerald-brand transition-colors">Home</a>
+      </li>
+      <li aria-hidden="true">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li>
+        <span class="text-navy font-medium">Window Safety</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero / Intro -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h1 class="text-navy font-heading">Prevent Hummingbird Window Strikes</h1>
+      <p class="mt-2 text-gray-500 text-lg">Protect the birds you love with proven, affordable solutions.</p>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading">The Problem</h2>
+      <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">
+        Window collisions are one of the top human-caused threats to birds. The scale is staggering, and hummingbirds
+        are especially vulnerable due to their speed and flight patterns.
+      </p>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+          <div class="text-4xl font-bold text-ruby font-heading">~1B</div>
+          <p class="mt-2 text-gray-600 text-sm">birds killed by window strikes each year in the US alone</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+          <div class="text-4xl font-bold text-ruby font-heading">30 mph</div>
+          <p class="mt-2 text-gray-600 text-sm">typical hummingbird flight speed &mdash; up to 60 mph in dives</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 text-center">
+          <div class="text-4xl font-bold text-ruby font-heading">0.1 oz</div>
+          <p class="mt-2 text-gray-600 text-sm">body weight means even low-speed impacts can be fatal</p>
+        </div>
+      </div>
+      <p class="mt-6 text-gray-600 leading-relaxed max-w-3xl text-sm">
+        Birds hit windows because they see reflections of sky, clouds, and vegetation and perceive them as open space.
+        Hummingbirds are particularly vulnerable because their territorial aggression often sends them flying at
+        high speed toward reflections of themselves.
+      </p>
+    </div>
+  </section>
+
+  <!-- The 3-foot / 30-foot Rule -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading">The 3-Foot / 30-Foot Rule</h2>
+      <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">
+        The single most important principle for preventing window strikes. Place feeders and bird-attracting
+        features in one of two safe zones:
+      </p>
+
+      <!-- CSS Diagram -->
+      <div class="mt-10 max-w-4xl mx-auto">
+        <div class="relative">
+          <!-- Labels row -->
+          <div class="flex items-stretch text-center text-sm font-medium mb-2">
+            <div class="w-[15%] text-emerald-brand">Safe Zone</div>
+            <div class="flex-1 text-ruby">Danger Zone</div>
+            <div class="w-[20%] text-emerald-brand">Safe Zone</div>
+          </div>
+
+          <!-- Visual bars -->
+          <div class="flex items-stretch rounded-2xl overflow-hidden h-20 sm:h-24 shadow-sm border border-gray-200">
+            <!-- 0-3 ft: Safe -->
+            <div class="w-[15%] bg-emerald-brand/15 border-r-2 border-emerald-brand flex flex-col items-center justify-center px-1 relative">
+              <svg class="w-6 h-6 sm:w-8 sm:h-8 text-emerald-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-emerald-brand text-xs sm:text-sm font-bold mt-1">&lt; 3 ft</span>
+            </div>
+
+            <!-- 4-29 ft: Danger -->
+            <div class="flex-1 bg-ruby/10 flex flex-col items-center justify-center px-2 relative">
+              <div class="absolute inset-0 opacity-5" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #DC143C 10px, #DC143C 11px);"></div>
+              <svg class="relative w-6 h-6 sm:w-8 sm:h-8 text-ruby" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+              <span class="relative text-ruby text-xs sm:text-sm font-bold mt-1">4&ndash;29 ft</span>
+            </div>
+
+            <!-- 30+ ft: Safe -->
+            <div class="w-[20%] bg-emerald-brand/15 border-l-2 border-emerald-brand flex flex-col items-center justify-center px-1">
+              <svg class="w-6 h-6 sm:w-8 sm:h-8 text-emerald-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-emerald-brand text-xs sm:text-sm font-bold mt-1">&gt; 30 ft</span>
+            </div>
+          </div>
+
+          <!-- Window indicator -->
+          <div class="flex items-center mt-3">
+            <div class="flex items-center gap-1.5">
+              <div class="w-4 h-8 bg-sky-200 border border-sky-300 rounded-sm"></div>
+              <span class="text-xs text-gray-500 font-medium">Window</span>
+            </div>
+            <div class="flex-1 border-t border-dashed border-gray-300 mx-3"></div>
+            <span class="text-xs text-gray-500">Distance from window</span>
+          </div>
+        </div>
+
+        <!-- Explanation cards -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-emerald-brand/5 border border-emerald-brand/20 rounded-2xl p-5">
+            <h3 class="text-emerald-brand font-heading font-bold text-base flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              Within 3 feet
+            </h3>
+            <p class="mt-2 text-gray-600 text-sm leading-relaxed">
+              Birds leaving a feeder this close to glass cannot build enough speed for a fatal collision. Even if they hit, the impact is minor. This is the ideal distance for window-mount feeders.
+            </p>
+          </div>
+          <div class="bg-emerald-brand/5 border border-emerald-brand/20 rounded-2xl p-5">
+            <h3 class="text-emerald-brand font-heading font-bold text-base flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+              Beyond 30 feet
+            </h3>
+            <p class="mt-2 text-gray-600 text-sm leading-relaxed">
+              At this distance, birds are far less likely to mistake window reflections for open flyway space. They have time to recognize the glass and change course.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Table -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading">Proven Solutions</h2>
+      <p class="mt-4 text-gray-700 leading-relaxed max-w-3xl">
+        Multiple effective options exist at every price point. You can combine several for maximum protection.
+      </p>
+
+      <!-- Important Note -->
+      <div class="mt-6 bg-ruby/5 border border-ruby/20 rounded-2xl p-5 max-w-3xl">
+        <div class="flex items-start gap-3">
+          <span class="flex-shrink-0 w-8 h-8 bg-ruby/10 rounded-full flex items-center justify-center text-ruby font-bold text-sm">!</span>
+          <div>
+            <p class="text-navy font-bold font-heading text-sm">Critical: Treatments must be on the OUTSIDE of glass</p>
+            <p class="mt-1 text-gray-600 text-sm leading-relaxed">
+              Window strikes happen because birds see reflections on the exterior surface. Decals or films placed on the
+              inside are obscured by those reflections and are far less effective.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Responsive Table -->
+      <div class="mt-8 overflow-x-auto rounded-2xl shadow-sm border border-gray-100">
+        <table class="w-full bg-white text-sm">
+          <thead>
+            <tr class="border-b border-gray-100">
+              <th class="text-left px-5 py-4 font-heading font-bold text-navy bg-gray-50/80">Solution</th>
+              <th class="text-left px-5 py-4 font-heading font-bold text-navy bg-gray-50/80">Effectiveness</th>
+              <th class="text-left px-5 py-4 font-heading font-bold text-navy bg-gray-50/80">Cost</th>
+              <th class="text-left px-5 py-4 font-heading font-bold text-navy bg-gray-50/80 min-w-[240px]">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {solutions.map((sol, i) => (
+              <tr class:list={['border-b border-gray-50', i % 2 === 1 ? 'bg-gray-50/30' : '']}>
+                <td class="px-5 py-4 font-medium text-navy whitespace-nowrap">{sol.name}</td>
+                <td class="px-5 py-4">
+                  <span class:list={['inline-flex px-2.5 py-0.5 rounded-full text-xs font-semibold', sol.effectivenessColor]}>
+                    {sol.effectiveness}
+                  </span>
+                </td>
+                <td class="px-5 py-4 text-gray-600 whitespace-nowrap">{sol.cost}</td>
+                <td class="px-5 py-4 text-gray-600 leading-relaxed">{sol.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Window-Mount Feeders -->
+  <section class="py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-emerald-brand/5 border-2 border-emerald-brand/20 rounded-2xl p-8 sm:p-10">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-emerald-brand rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-emerald-brand text-xs font-bold uppercase tracking-wider">Double Solution</span>
+              <h2 class="text-navy font-heading mt-1">Window-Mount Feeders</h2>
+            </div>
+          </div>
+          <div class="mt-6 space-y-4 text-gray-700 leading-relaxed">
+            <p>
+              Window-mount feeders with suction cups are the ultimate win-win. By placing a feeder directly on
+              your glass, you solve two problems at once:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <h3 class="text-navy font-heading font-bold text-sm flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" /></svg>
+                  Safety
+                </h3>
+                <p class="mt-1 text-gray-600 text-sm">Within the 3-foot safe zone, so even startled birds cannot build dangerous speed.</p>
+              </div>
+              <div class="bg-white rounded-xl p-4 border border-gray-100">
+                <h3 class="text-navy font-heading font-bold text-sm flex items-center gap-2">
+                  <svg class="w-4 h-4 text-emerald-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4" /></svg>
+                  Close-Up Views
+                </h3>
+                <p class="mt-1 text-gray-600 text-sm">Incredible close-up views from inside your home. Watch hummingbird tongues, feather details, and behavior inches away.</p>
+              </div>
+            </div>
+          </div>
+          <p class="mt-6 text-gray-600 text-sm leading-relaxed">
+            Look for window-mount feeders with strong suction cups, easy-to-clean designs, and built-in ant moats.
+            Many users find hummingbirds adjust to window feeders within a day or two.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading text-xl">Sources</h2>
+      <ul class="mt-4 space-y-2">
+        {sources.map((source) => (
+          <li>
+            <a
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-emerald-brand hover:text-emerald-dark transition-colors text-sm underline underline-offset-2"
+            >
+              {source.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

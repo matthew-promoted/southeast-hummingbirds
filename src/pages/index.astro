@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HummingbirdStatus from '../components/HummingbirdStatus.tsx';
+import NectarCalculator from '../components/NectarCalculator.tsx';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Southeast Hummingbirds',
+  description: 'Your complete guide to attracting, feeding, and identifying hummingbirds in the southeastern United States.',
+  url: 'https://southeasthummingbirds.com',
+};
+
+const guides = [
+  {
+    href: '/migration',
+    title: 'Migration Timing',
+    description: 'When do hummingbirds arrive and depart in your area? Regional data for GA, FL, SC, and AL.',
+    icon: '🗺️',
+  },
+  {
+    href: '/species',
+    title: 'Species Guide',
+    description: 'Identify Ruby-throated Hummingbirds and rare winter visitors like Rufous and Calliope.',
+    icon: '🔍',
+  },
+  {
+    href: '/feeders',
+    title: 'Best Feeders',
+    description: 'Expert-tested feeder recommendations at every price point, ranked by ease of cleaning.',
+    icon: '🏆',
+  },
+  {
+    href: '/nectar',
+    title: 'Nectar Recipe',
+    description: 'The only recipe you need: 4 parts water, 1 part sugar. Plus what to never use.',
+    icon: '🧪',
+  },
+  {
+    href: '/native-plants',
+    title: 'Native Plants',
+    description: 'Southeast native plants that attract hummingbirds with continuous blooms March through October.',
+    icon: '🌺',
+  },
+  {
+    href: '/seasonal-calendar',
+    title: 'Seasonal Calendar',
+    description: 'Month-by-month guide to feeding, cleaning, and watching for hummingbirds.',
+    icon: '📅',
+  },
+];
+---
+
+<BaseLayout
+  title="Southeast Hummingbirds — Your Guide to Hummingbirds in GA, FL, SC & AL"
+  description="Everything you need to attract, feed, and identify hummingbirds in the southeastern United States. Migration data, feeder reviews, nectar recipes, native plants, and more."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden min-h-[480px] md:min-h-[540px] flex items-center">
+    <!-- Watercolor background -->
+    <img
+      src="/images/hero-garden.png"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+      fetchpriority="high"
+    />
+    <!-- Gradient overlays for text readability -->
+    <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/50 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent"></div>
+
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+      <div class="max-w-2xl">
+        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-heading font-bold leading-tight drop-shadow-lg">
+          Your Guide to
+          <span class="text-emerald-200">Hummingbirds</span>
+          in the Southeast
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-white/90 leading-relaxed max-w-xl drop-shadow-md">
+          Everything you need to attract, feed, and identify Ruby-throated Hummingbirds in Georgia, Florida, South Carolina, and Alabama.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/migration"
+            class="inline-flex items-center gap-2 bg-white text-emerald-brand font-semibold px-6 py-3 rounded-xl hover:bg-emerald-50 transition-colors shadow-lg"
+          >
+            Migration Timing
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="/nectar"
+            class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border-2 border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-colors"
+          >
+            Nectar Recipe
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Status Widget -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
+    <div class="max-w-xl mx-auto">
+      <HummingbirdStatus client:visible />
+    </div>
+  </section>
+
+  <!-- Guide Cards -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="text-center mb-12">
+      <h2 class="text-navy font-heading">Everything You Need to Know</h2>
+      <p class="mt-3 text-gray-600 text-lg max-w-2xl mx-auto">
+        Expert-backed guides covering every aspect of attracting and caring for hummingbirds in the Southeast.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {guides.map(guide => (
+        <a
+          href={guide.href}
+          class="group block bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all"
+        >
+          <span class="text-3xl">{guide.icon}</span>
+          <h3 class="mt-4 text-lg font-heading font-bold text-navy group-hover:text-emerald-brand transition-colors">
+            {guide.title}
+          </h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">{guide.description}</p>
+          <span class="inline-flex items-center gap-1 mt-4 text-sm font-medium text-emerald-brand group-hover:text-emerald-dark transition-colors">
+            Read guide
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Nectar Calculator -->
+  <section class="bg-mint py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-navy font-heading">Make Your Own Nectar</h2>
+          <p class="mt-4 text-gray-600 leading-relaxed">
+            Skip the store-bought stuff. Homemade hummingbird nectar is easy, cheap, and better for the birds. Just use plain white sugar and water&mdash;nothing else.
+          </p>
+          <div class="mt-6 space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-ruby/10 rounded-full flex items-center justify-center text-ruby font-bold text-sm">!</span>
+              <div>
+                <strong class="text-navy">Never use red dye.</strong>
+                <p class="text-sm text-gray-600">The feeder color attracts birds. Dye is unnecessary and potentially harmful.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-ruby/10 rounded-full flex items-center justify-center text-ruby font-bold text-sm">!</span>
+              <div>
+                <strong class="text-navy">Never use honey.</strong>
+                <p class="text-sm text-gray-600">Honey promotes fatal fungal growth and can contain botulism spores.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-8 h-8 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-bold text-sm">✓</span>
+              <div>
+                <strong class="text-navy">Plain white sugar only.</strong>
+                <p class="text-sm text-gray-600">Pure sucrose&mdash;the same sugar found in flower nectar.</p>
+              </div>
+            </div>
+          </div>
+          <a href="/nectar" class="inline-flex items-center gap-2 mt-8 text-emerald-brand hover:text-emerald-dark font-semibold transition-colors">
+            Full nectar guide
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <div>
+          <NectarCalculator client:visible />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Facts -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <h2 class="text-navy font-heading text-center">Quick Facts</h2>
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="text-center p-6">
+        <div class="text-4xl font-bold text-emerald-brand font-heading">0.1 oz</div>
+        <p class="mt-2 text-gray-600 text-sm">Average weight of a Ruby-throated Hummingbird&mdash;lighter than a nickel</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="text-4xl font-bold text-ruby font-heading">53x</div>
+        <p class="mt-2 text-gray-600 text-sm">Wing beats per second during normal flight</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="text-4xl font-bold text-emerald-brand font-heading">500mi</div>
+        <p class="mt-2 text-gray-600 text-sm">Non-stop Gulf of Mexico crossing during spring migration</p>
+      </div>
+      <div class="text-center p-6">
+        <div class="text-4xl font-bold text-ruby font-heading">4:1</div>
+        <p class="mt-2 text-gray-600 text-sm">The perfect nectar ratio&mdash;4 parts water to 1 part white sugar</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Guides -->
+  <section class="bg-navy text-white py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-center text-white">More Resources</h2>
+      <p class="mt-3 text-white/70 text-center text-lg max-w-2xl mx-auto">
+        Deep dives into feeder placement, pest control, and keeping birds safe.
+      </p>
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <a href="/feeder-placement" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Feeder Placement</h3>
+          <p class="mt-2 text-white/60 text-sm">Optimal positioning, dealing with territorial males, and seasonal strategies.</p>
+        </a>
+        <a href="/pest-control" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Pest Control</h3>
+          <p class="mt-2 text-white/60 text-sm">Keep ants, bees, and wasps away from your feeders without harming birds.</p>
+        </a>
+        <a href="/window-safety" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Window Safety</h3>
+          <p class="mt-2 text-white/60 text-sm">Prevent window strikes with the 3-foot / 30-foot rule and proven solutions.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

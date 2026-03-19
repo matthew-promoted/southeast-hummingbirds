@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  /* Watercolor-inspired palette */
+  --color-emerald-brand: #2D8B4E;
+  --color-emerald-dark: #1F6B3A;
+  --color-emerald-light: #3AAF63;
+  --color-ruby: #DC143C;
+  --color-ruby-dark: #B01030;
+  --color-ruby-light: #E84566;
+  --color-navy: #1A1A2E;
+  --color-navy-light: #2D2D4A;
+  --color-mint: #F0F7F4;
+  --color-mint-dark: #D8EDE2;
+  --color-cream: #FAFAF8;
+  /* Watercolor landscape tones */
+  --color-sage: #7A9A6D;
+  --color-sandstone: #C4A97D;
+  --color-river: #8AAEC4;
+  --color-parchment: #F5F0E8;
+  --font-heading: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-navy);
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h1 { font-size: 2.75rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+
+  @media (min-width: 768px) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.75rem; }
+  }
+}

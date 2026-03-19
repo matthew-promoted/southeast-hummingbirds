@@ -1,0 +1,466 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Hummingbird Feeder Pest Control — Ants, Bees & Wasps',
+  description: 'Keep ants, bees, and wasps away from your hummingbird feeders. Chemical-free solutions ranked by effectiveness.',
+  author: {
+    '@type': 'Organization',
+    name: 'Southeast Hummingbirds',
+  },
+};
+
+const antSolutions = [
+  {
+    solution: 'Water-filled ant moat',
+    effectiveness: 5,
+    label: 'Excellent',
+    cost: '$5-10',
+    description: 'A small cup hung above the feeder and filled with water. Ants cannot cross the water barrier. Refill when water evaporates.',
+    pros: 'Nearly 100% effective, inexpensive, no chemicals',
+    cons: 'Must refill every few days in hot weather',
+  },
+  {
+    solution: 'Feeder with built-in moat',
+    effectiveness: 5,
+    label: 'Excellent',
+    cost: '$15-30',
+    description: 'Feeders like the Aspects HummZinger have an integrated moat in the top. Less hassle than a separate moat since it is part of the feeder design.',
+    pros: 'Convenient, no separate hardware, very effective',
+    cons: 'Must buy a new feeder if you do not already have one',
+  },
+  {
+    solution: 'Permethrin ant guards',
+    effectiveness: 4,
+    label: 'Very Good',
+    cost: '$5-8',
+    description: 'A small device coated with permethrin that attaches between hook and feeder. Ants contact the surface and turn back or perish.',
+    pros: 'Long lasting (up to 3 months), easy to install',
+    cons: 'Contains pesticide (low risk to birds at proper distance), must replace periodically',
+  },
+  {
+    solution: 'Fishing line hanging',
+    effectiveness: 3,
+    label: 'Good',
+    cost: '$2-5',
+    description: 'Hang feeder from thin monofilament fishing line instead of a hook or chain. Ants have difficulty gripping the smooth, thin surface.',
+    pros: 'Very cheap, nearly invisible',
+    cons: 'Determined ants may still cross, harder to hang heavy feeders',
+  },
+  {
+    solution: 'Petroleum jelly on pole',
+    effectiveness: 2,
+    label: 'Fair',
+    cost: '$3-5',
+    description: 'Apply petroleum jelly or similar sticky substance to the pole or hook. Creates a barrier ants cannot easily cross.',
+    pros: 'Cheap and readily available',
+    cons: 'Melts in heat, can get on bird feathers (harmful), messy, needs frequent reapplication',
+  },
+];
+
+const beeSolutions = [
+  {
+    solution: 'Saucer-style feeders',
+    effectiveness: 5,
+    label: 'Excellent',
+    cost: '$12-25',
+    description: 'Saucer feeders (like the HummZinger) keep nectar far below the feeding ports. Hummingbird tongues can reach it, but short bee tongues cannot.',
+    pros: 'Best long-term solution, also easier to clean',
+    cons: 'Smaller capacity than bottle-style feeders',
+  },
+  {
+    solution: 'Bee guards / screens',
+    effectiveness: 4,
+    label: 'Very Good',
+    cost: '$3-8',
+    description: 'Mesh or plastic guards that fit over feeding ports. The openings are large enough for hummingbird bills but too small for bees.',
+    pros: 'Easy retrofit for existing feeders, inexpensive',
+    cons: 'Yellow guards may actually attract bees (choose white or red)',
+  },
+  {
+    solution: 'Move feeder to shade',
+    effectiveness: 3,
+    label: 'Good',
+    cost: 'Free',
+    description: 'Bees and wasps prefer feeding in sunny locations. Moving the feeder to a shaded spot reduces insect activity while hummingbirds continue visiting.',
+    pros: 'No cost, also keeps nectar fresher',
+    cons: 'May reduce hummingbird visibility for scouts',
+  },
+  {
+    solution: 'Decoy feeder strategy',
+    effectiveness: 3,
+    label: 'Good',
+    cost: '$10-15',
+    description: 'Set up a small open dish of sugar water (stronger ratio, 3:1) in a sunny spot away from hummingbird feeders. Bees prefer the closer, sweeter, easier source.',
+    pros: 'Redirects insects rather than harming them',
+    cons: 'Requires maintaining a second feeding station',
+  },
+  {
+    solution: 'Clean up drips immediately',
+    effectiveness: 3,
+    label: 'Good',
+    cost: 'Free',
+    description: 'Bees and wasps are attracted to sticky residue. Wipe down the feeder exterior after every fill, and fix any leaking feeders promptly.',
+    pros: 'Good preventive practice, no cost',
+    cons: 'Does not solve the problem alone, must combine with other methods',
+  },
+];
+
+const productRecommendations = [
+  {
+    name: 'Aspects HummZinger Ultra',
+    type: 'Saucer feeder with built-in ant moat',
+    bestFor: 'All-around best pest resistance',
+    notes: 'Built-in ant moat, saucer design deters bees, easy to clean. The gold standard for pest-proof feeders.',
+  },
+  {
+    name: 'Perky-Pet Ant Guard',
+    type: 'Separate ant moat accessory',
+    bestFor: 'Adding ant protection to any feeder',
+    notes: 'Simple water-filled cup that hangs between hook and feeder. Universal fit.',
+  },
+  {
+    name: 'Aspects Jewel Box Window Feeder',
+    type: 'Window-mount saucer feeder',
+    bestFor: 'Close-up viewing with good pest resistance',
+    notes: 'Window mount makes it harder for ants to reach. Saucer design handles bees.',
+  },
+  {
+    name: 'Songbird Essentials Ant Moat',
+    type: 'Red ant moat with large water capacity',
+    bestFor: 'Hot climates where moats evaporate quickly',
+    notes: 'Larger water reservoir than most moats. Lasts longer between refills.',
+  },
+];
+---
+
+<BaseLayout
+  title="Hummingbird Feeder Pest Control — Ants, Bees & Wasps | Southeast Hummingbirds"
+  description="Keep ants, bees, and wasps away from your hummingbird feeders. Chemical-free solutions ranked by effectiveness."
+  schema={schema}
+>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li>
+        <a href="/" class="hover:text-emerald-brand transition-colors">Home</a>
+      </li>
+      <li>
+        <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </li>
+      <li>
+        <span class="text-navy font-medium">Pest Control</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Hero Header -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 md:pt-12 md:pb-16">
+    <div class="max-w-3xl">
+      <span class="inline-block bg-ruby/10 text-ruby text-sm font-semibold px-3 py-1 rounded-full mb-4">
+        Pest Solutions
+      </span>
+      <h1 class="text-navy font-heading">
+        Keep Pests Away from Your Hummingbird Feeders
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+        Ants marching down the hook. Bees swarming the ports. Yellow jackets bullying the birds away. These are the most common frustrations hummingbird enthusiasts face. The good news: every pest problem has a chemical-free solution.
+      </p>
+    </div>
+  </section>
+
+  <!-- Ants Section -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="text-3xl">🐜</span>
+        <h2 class="text-navy font-heading">Ants</h2>
+      </div>
+      <p class="text-gray-600 max-w-3xl mb-8">
+        Ants are the number one pest at hummingbird feeders. They find sugar water quickly and create pheromone trails that recruit thousands more. Once a trail is established, ants will keep coming until the path is physically broken. The goal is to create a barrier they cannot cross.
+      </p>
+
+      <!-- Ant Solutions Table -->
+      <div class="overflow-x-auto rounded-2xl border border-gray-100 shadow-sm bg-white">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr class="bg-navy text-white">
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Solution</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap text-center">Effectiveness</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Cost</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Pros</th>
+              <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Cons</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            {antSolutions.map((item, i) => (
+              <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+                <td class="px-4 py-3 font-medium text-navy whitespace-nowrap align-top">
+                  {item.solution}
+                </td>
+                <td class="px-4 py-3 text-center align-top">
+                  <div class="flex items-center justify-center gap-1">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <span class:list={[
+                        'w-2.5 h-2.5 rounded-full',
+                        s < item.effectiveness ? 'bg-emerald-brand' : 'bg-gray-200',
+                      ]} />
+                    ))}
+                  </div>
+                  <span class="text-xs text-gray-500 mt-1 block">{item.label}</span>
+                </td>
+                <td class="px-4 py-3 text-gray-700 whitespace-nowrap align-top">{item.cost}</td>
+                <td class="px-4 py-3 text-gray-600 align-top min-w-[180px]">{item.pros}</td>
+                <td class="px-4 py-3 text-gray-500 align-top min-w-[180px]">{item.cons}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Ant solution cards (mobile-friendly alternative view) -->
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:hidden">
+        {antSolutions.map((item) => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-heading font-bold text-navy text-base">{item.solution}</h3>
+              <span class="text-xs text-gray-500">{item.cost}</span>
+            </div>
+            <div class="flex items-center gap-1 mb-3">
+              {Array.from({ length: 5 }).map((_, s) => (
+                <span class:list={[
+                  'w-2 h-2 rounded-full',
+                  s < item.effectiveness ? 'bg-emerald-brand' : 'bg-gray-200',
+                ]} />
+              ))}
+              <span class="text-xs text-gray-500 ml-1">{item.label}</span>
+            </div>
+            <p class="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bees, Wasps & Yellow Jackets Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="text-3xl">🐝</span>
+      <h2 class="text-navy font-heading">Bees, Wasps &amp; Yellow Jackets</h2>
+    </div>
+    <p class="text-gray-600 max-w-3xl mb-8">
+      Bees and wasps are attracted to the sugar water and can overwhelm a feeder. Yellow jackets in particular can be aggressive enough to deter hummingbirds entirely. Unlike ants, flying insects cannot be stopped with a moat. The strategy shifts to making nectar physically inaccessible and reducing attraction.
+    </p>
+
+    <!-- Bee Solutions Table -->
+    <div class="overflow-x-auto rounded-2xl border border-gray-100 shadow-sm bg-white">
+      <table class="w-full text-left text-sm">
+        <thead>
+          <tr class="bg-navy text-white">
+            <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Solution</th>
+            <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap text-center">Effectiveness</th>
+            <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Cost</th>
+            <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Pros</th>
+            <th class="px-4 py-3 font-heading font-semibold whitespace-nowrap">Cons</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          {beeSolutions.map((item, i) => (
+            <tr class={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+              <td class="px-4 py-3 font-medium text-navy whitespace-nowrap align-top">
+                {item.solution}
+              </td>
+              <td class="px-4 py-3 text-center align-top">
+                <div class="flex items-center justify-center gap-1">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <span class:list={[
+                      'w-2.5 h-2.5 rounded-full',
+                      s < item.effectiveness ? 'bg-emerald-brand' : 'bg-gray-200',
+                    ]} />
+                  ))}
+                </div>
+                <span class="text-xs text-gray-500 mt-1 block">{item.label}</span>
+              </td>
+              <td class="px-4 py-3 text-gray-700 whitespace-nowrap align-top">{item.cost}</td>
+              <td class="px-4 py-3 text-gray-600 align-top min-w-[180px]">{item.pros}</td>
+              <td class="px-4 py-3 text-gray-500 align-top min-w-[180px]">{item.cons}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bee solution cards (mobile-friendly alternative view) -->
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:hidden">
+      {beeSolutions.map((item) => (
+        <div class="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-heading font-bold text-navy text-base">{item.solution}</h3>
+            <span class="text-xs text-gray-500">{item.cost}</span>
+          </div>
+          <div class="flex items-center gap-1 mb-3">
+            {Array.from({ length: 5 }).map((_, s) => (
+              <span class:list={[
+                'w-2 h-2 rounded-full',
+                s < item.effectiveness ? 'bg-emerald-brand' : 'bg-gray-200',
+              ]} />
+            ))}
+            <span class="text-xs text-gray-500 ml-1">{item.label}</span>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Product Recommendations -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading text-center">Recommended Products</h2>
+      <p class="mt-3 text-gray-600 text-center text-lg max-w-2xl mx-auto">
+        Feeders and accessories specifically chosen for pest resistance.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {productRecommendations.map(product => (
+          <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="font-heading font-bold text-navy text-lg">{product.name}</h3>
+                <p class="text-emerald-brand text-sm font-medium mt-1">{product.type}</p>
+              </div>
+              <span class="flex-shrink-0 bg-emerald-brand/10 text-emerald-brand text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap">
+                Best for: {product.bestFor}
+              </span>
+            </div>
+            <p class="mt-3 text-gray-600 text-sm leading-relaxed">{product.notes}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Warning Callout -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-ruby/5 border-2 border-ruby/20 rounded-2xl p-6 md:p-8">
+        <div class="flex items-start gap-4">
+          <span class="flex-shrink-0 w-12 h-12 bg-ruby/10 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-ruby" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            </svg>
+          </span>
+          <div>
+            <h3 class="font-heading font-bold text-ruby text-lg">
+              Never Apply Substances Directly to the Feeder
+            </h3>
+            <div class="mt-3 space-y-3 text-gray-700 text-sm leading-relaxed">
+              <p>
+                Do not apply cooking oil, petroleum jelly, Vicks VapoRub, insecticides, or any other substance directly to the feeder body, feeding ports, or perches. These substances can transfer to hummingbird feathers and bills, causing serious harm.
+              </p>
+              <p>
+                Oily substances on feathers destroy the bird's waterproofing and insulation. Even a small amount of oil can cause hypothermia, impaired flight, or death. Insecticides are toxic to hummingbirds at any concentration.
+              </p>
+              <p>
+                <strong class="text-navy">The only safe pest barrier is water.</strong> Ant moats work because they use plain water, which is harmless if a bird contacts it. Stick to physical barriers and feeder design changes rather than chemical deterrents.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional Tips -->
+  <section class="bg-mint py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-navy font-heading text-center">General Prevention Tips</h2>
+      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg mb-4">1</div>
+          <h3 class="font-heading font-bold text-navy text-base">Keep feeders clean</h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">Wipe down the exterior after every refill. Sticky residue on the outside is the biggest attractor for all insects.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg mb-4">2</div>
+          <h3 class="font-heading font-bold text-navy text-base">Use the correct nectar ratio</h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">Stick to 4:1 water to sugar. Stronger concentrations attract more insects and can harm hummingbirds.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg mb-4">3</div>
+          <h3 class="font-heading font-bold text-navy text-base">Choose red feeders, not yellow</h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">Yellow attracts bees and wasps. Pick feeders with red bodies and ports. Remove any yellow flower inserts if your feeder has them.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg mb-4">4</div>
+          <h3 class="font-heading font-bold text-navy text-base">Fix leaks immediately</h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">A dripping feeder creates a trail of sugar water that ants follow and a puddle that attracts bees. Replace worn gaskets and cracked bottles.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg mb-4">5</div>
+          <h3 class="font-heading font-bold text-navy text-base">Relocate temporarily</h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">If bees swarm a feeder, take it down for 1-2 days. Bees will stop visiting. Hummingbirds will return faster because they search a wider area.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+          <div class="w-10 h-10 bg-emerald-brand/10 rounded-full flex items-center justify-center text-emerald-brand font-heading font-bold text-lg mb-4">6</div>
+          <h3 class="font-heading font-bold text-navy text-base">Avoid pesticide sprays</h3>
+          <p class="mt-2 text-gray-600 text-sm leading-relaxed">Never spray insecticide near feeders. Residue contaminates nectar and can poison hummingbirds. Use only physical barriers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <div class="max-w-3xl">
+      <h2 class="text-navy font-heading">Sources &amp; Further Reading</h2>
+      <ul class="mt-4 space-y-3 text-sm text-gray-600">
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>Williamson, Sheri L. <em>Hummingbirds of North America</em>. Peterson Field Guides, Houghton Mifflin, 2001.</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>The Cornell Lab of Ornithology. "Feeding Hummingbirds." <a href="https://www.allaboutbirds.org/news/hummingbird-feeding-faqs/" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">allaboutbirds.org</a></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>Audubon Society. "How to Keep Bees Away from Hummingbird Feeders." <a href="https://www.audubon.org/news/how-keep-bees-away-hummingbird-feeders" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">audubon.org</a></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>U.S. Fish &amp; Wildlife Service. "Attracting Hummingbirds." <a href="https://www.fws.gov/story/attracting-hummingbirds" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">fws.gov</a></span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="text-emerald-brand mt-0.5">&#8226;</span>
+          <span>Wild Birds Unlimited. "Ant and Bee Solutions for Hummingbird Feeders." <a href="https://www.wbu.com" class="text-emerald-brand hover:text-emerald-dark underline underline-offset-2 transition-colors">wbu.com</a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Related Guides -->
+  <section class="bg-navy text-white py-12 md:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-heading text-center text-white">Related Guides</h2>
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <a href="/feeder-placement" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Feeder Placement</h3>
+          <p class="mt-2 text-white/60 text-sm">Optimal positioning, dealing with territorial males, and seasonal strategies.</p>
+        </a>
+        <a href="/feeders" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Best Feeders</h3>
+          <p class="mt-2 text-white/60 text-sm">Expert-tested feeder recommendations ranked by ease of cleaning.</p>
+        </a>
+        <a href="/nectar" class="group block bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-colors">
+          <h3 class="font-heading font-bold text-lg text-white group-hover:text-emerald-light transition-colors">Nectar Recipe</h3>
+          <p class="mt-2 text-white/60 text-sm">The only recipe you need, plus what to never use in your feeders.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
