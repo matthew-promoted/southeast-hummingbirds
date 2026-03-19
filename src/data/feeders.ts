@@ -108,7 +108,7 @@ export const feeders: Feeder[] = [
     leakProof: 'can drip',
     cleaningEase: 3,
     durability: 3,
-    amazonUrl: 'https://www.amazon.com/dp/B000GDLLJS/',
+    amazonUrl: 'https://www.amazon.com/dp/B005XOZKC6/',
     whyRecommend: 'The best-selling hummingbird feeder on Amazon for good reason: it works, it\'s cheap, and the wide-mouth design makes cleaning surprisingly easy for a budget option.',
     cleaningExperience: [
       'Two-piece design separates easily',
