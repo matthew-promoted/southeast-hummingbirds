@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoImg from '../images/hummingbird-logo-sm.png';
+
 const navLinks = [
   { href: '/migration', label: 'Migration' },
   { href: '/species', label: 'Species' },
@@ -16,7 +19,7 @@ const currentPath = Astro.url.pathname;
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2 text-emerald-brand font-heading font-bold text-xl hover:text-emerald-dark transition-colors">
-        <img src="/images/hummingbird-logo-sm.png" alt="Southeast Hummingbirds" class="w-10 h-auto" width="40" height="20" />
+        <Image src={logoImg} alt="Southeast Hummingbirds" width={40} height={21} class="w-10 h-auto" format="webp" />
         <span class="hidden sm:inline">Southeast Hummingbirds</span>
         <span class="sm:hidden">SE Hummingbirds</span>
       </a>

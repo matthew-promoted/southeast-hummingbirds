@@ -1,7 +1,9 @@
 ---
+import { Picture } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HummingbirdStatus from '../components/HummingbirdStatus.tsx';
 import NectarCalculator from '../components/NectarCalculator.tsx';
+import heroImage from '../images/hero-garden.png';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -59,11 +61,16 @@ const guides = [
   <!-- Hero -->
   <section class="relative overflow-hidden min-h-[480px] md:min-h-[540px] flex items-center">
     <!-- Watercolor background -->
-    <img
-      src="/images/hero-garden.png"
+    <Picture
+      src={heroImage}
+      widths={[480, 768, 1200, 1600]}
+      sizes="100vw"
+      formats={['avif', 'webp']}
+      quality={80}
       alt=""
       class="absolute inset-0 w-full h-full object-cover"
       fetchpriority="high"
+      loading="eager"
     />
     <!-- Gradient overlays for text readability -->
     <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/50 to-transparent"></div>
