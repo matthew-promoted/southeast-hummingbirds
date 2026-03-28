@@ -7,11 +7,11 @@ import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://southernhummers.com',
+  output: 'static',
   integrations: [preact(), sitemap()],
-
   vite: {
     plugins: [tailwindcss()],
   },
 
-  adapter: cloudflare(),
+  adapter: cloudflare({ imageService: 'compile' }),
 });
