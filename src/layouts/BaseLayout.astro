@@ -6,11 +6,14 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  schema?: object;
+  schema?: object | object[];
+  ogType?: string;
 }
 
-const { title, description, schema } = Astro.props;
+const { title, description, schema, ogType = 'website' } = Astro.props;
+const schemas = schema == null ? [] : Array.isArray(schema) ? schema : [schema];
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const rssURL = new URL('/rss.xml', Astro.site);
 ---
 
 <!doctype html>
@@ -20,11 +23,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" type="application/rss+xml" title="Southeast Hummingbirds Blog" href={rssURL} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Southeast Hummingbirds" />
     <meta property="og:image" content={new URL('/images/og-card.png', Astro.site)} />
@@ -42,9 +46,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/png" href="/favicon.png" />
     <title>{title}</title>
 
-    {schema && (
-      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-    )}
+    {schemas.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item).replace(/</g, '\\u003c')} />
+    ))}
   </head>
   <body class="min-h-screen flex flex-col">
     <Header />

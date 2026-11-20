@@ -9,9 +9,16 @@ const navLinks = [
   { href: '/nectar', label: 'Nectar' },
   { href: '/native-plants', label: 'Plants' },
   { href: '/seasonal-calendar', label: 'Calendar' },
+  { href: '/blog', label: 'Blog' },
 ];
 
-const currentPath = Astro.url.pathname;
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+function isActive(href: string) {
+  const path = href.replace(/\/$/, '') || '/';
+  if (path === '/blog') return currentPath === '/blog' || currentPath.startsWith('/blog/');
+  return currentPath === path;
+}
 ---
 
 <header class="bg-white/95 backdrop-blur-sm border-b border-mint-dark sticky top-0 z-50">
@@ -25,13 +32,13 @@ const currentPath = Astro.url.pathname;
       </a>
 
       <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-1">
         {navLinks.map(link => (
           <a
             href={link.href}
             class:list={[
               'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
-              currentPath === link.href || currentPath === link.href + '/'
+              isActive(link.href)
                 ? 'bg-mint text-emerald-brand'
                 : 'text-navy hover:text-emerald-brand hover:bg-mint/50',
             ]}
@@ -44,7 +51,7 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-lg text-navy hover:bg-mint transition-colors"
+        class="lg:hidden p-2 rounded-lg text-navy hover:bg-mint transition-colors"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
       >
@@ -58,14 +65,14 @@ const currentPath = Astro.url.pathname;
     </div>
 
     <!-- Mobile Nav -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
+    <div id="mobile-menu" class="hidden lg:hidden pb-4">
       <div class="flex flex-col gap-1">
         {navLinks.map(link => (
           <a
             href={link.href}
             class:list={[
               'px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
-              currentPath === link.href || currentPath === link.href + '/'
+              isActive(link.href)
                 ? 'bg-mint text-emerald-brand'
                 : 'text-navy hover:text-emerald-brand hover:bg-mint/50',
             ]}
