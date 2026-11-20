@@ -150,3 +150,17 @@
 .blog-content tbody tr:nth-child(even) {
   background: var(--color-mint);
 }
+
+.blog-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+
+.blog-content p.img-caption {
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #6b7280;
+}
