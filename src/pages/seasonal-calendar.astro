@@ -13,8 +13,6 @@ const schema = {
   },
 };
 
-const currentMonth = new Date().toLocaleString('en-US', { month: 'long' });
-
 const intensityConfig: Record<string, { label: string; bg: string; text: string; dot: string; border: string }> = {
   low: {
     label: 'Low Activity',
@@ -80,6 +78,15 @@ const sources = [
     <div class="max-w-3xl">
       <h1 class="text-navy font-heading">Hummingbird Seasonal Calendar</h1>
       <p class="mt-2 text-gray-500 text-lg">Month-by-month guide to activity, feeding, and maintenance in the Southeast US.</p>
+      <p id="current-month-banner" hidden class="mt-4 text-lg">
+        <a
+          id="current-month-link"
+          href="#january"
+          class="font-medium text-emerald-brand underline underline-offset-2 hover:text-emerald-dark transition-colors"
+        >
+          It's <span id="current-month-name"></span> — here's what's happening now
+        </a>
+      </p>
     </div>
 
     <!-- Intensity Legend -->
@@ -98,51 +105,63 @@ const sources = [
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {seasonalCalendar.map((month) => {
-          const isCurrent = month.month === currentMonth;
           const config = intensityConfig[month.intensity];
           return (
             <article
-              class:list={[
-                'rounded-2xl overflow-hidden transition-all',
-                isCurrent
-                  ? 'shadow-lg ring-2 ring-emerald-brand ring-offset-2 ring-offset-mint'
-                  : 'shadow-sm',
-                'bg-white border',
-                isCurrent ? 'border-emerald-brand' : 'border-gray-100',
-              ]}
+              id={month.month.toLowerCase()}
+              data-calendar-month={month.month}
+              data-current-class="shadow-lg ring-2 ring-emerald-brand ring-offset-2 ring-offset-mint border-emerald-brand"
+              data-idle-class="shadow-sm border-gray-100"
+              class="scroll-mt-24 rounded-2xl overflow-hidden transition-all shadow-sm bg-white border border-gray-100"
             >
               <!-- Month Header -->
               <div
-                class:list={[
-                  'px-5 py-4 flex items-center justify-between',
-                  isCurrent ? 'bg-emerald-brand' : 'bg-gray-50',
-                ]}
+                data-month-header
+                data-current-class="bg-emerald-brand"
+                data-idle-class="bg-gray-50"
+                class="px-5 py-4 flex items-center justify-between bg-gray-50"
               >
-                <div class="flex items-center gap-3">
-                  {isCurrent && (
-                    <span class="w-2.5 h-2.5 bg-white rounded-full animate-pulse flex-shrink-0" />
-                  )}
-                  <h3
-                    class:list={[
-                      'font-heading font-bold text-xl',
-                      isCurrent ? 'text-white' : 'text-navy',
-                    ]}
+                <div>
+                  <span
+                    data-current-badge
+                    hidden
+                    class="mb-1 ml-[1.375rem] inline-flex items-center rounded-full bg-white px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-emerald-brand"
                   >
-                    {month.month}
-                  </h3>
+                    This month
+                  </span>
+                  <div class="flex items-center gap-3">
+                    <span
+                      data-current-pulse
+                      hidden
+                      aria-hidden="true"
+                      class="w-2.5 h-2.5 bg-white rounded-full animate-pulse flex-shrink-0"
+                    />
+                    <h3
+                      data-month-title
+                      data-current-class="text-white"
+                      data-idle-class="text-navy"
+                      class="font-heading font-bold text-xl text-navy"
+                    >
+                      {month.month}
+                    </h3>
+                  </div>
                 </div>
                 <span
+                  data-intensity-badge
+                  data-current-class="bg-white/20 text-white"
+                  data-idle-class={`${config.bg} ${config.text}`}
                   class:list={[
                     'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold',
-                    isCurrent
-                      ? 'bg-white/20 text-white'
-                      : [config.bg, config.text],
+                    config.bg,
+                    config.text,
                   ]}
                 >
-                  <span class:list={[
-                    'w-1.5 h-1.5 rounded-full',
-                    isCurrent ? 'bg-white' : config.dot,
-                  ]} />
+                  <span
+                    data-intensity-dot
+                    data-current-class="bg-white"
+                    data-idle-class={config.dot}
+                    class:list={['w-1.5 h-1.5 rounded-full', config.dot]}
+                  />
                   {config.label}
                 </span>
               </div>
@@ -275,4 +294,76 @@ const sources = [
       </ul>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      var MONTHS = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+
+      function monthInNewYork() {
+        try {
+          return new Intl.DateTimeFormat('en-US', {
+            month: 'long',
+            timeZone: 'America/New_York'
+          }).format(new Date());
+        } catch (err) {
+          return MONTHS[new Date().getMonth()];
+        }
+      }
+
+      function resolveMonth() {
+        var requested = '';
+        try {
+          requested = new URLSearchParams(window.location.search).get('month') || '';
+        } catch (err) {
+          requested = '';
+        }
+        var normalized = requested.trim().toLowerCase();
+        if (normalized) {
+          for (var i = 0; i < MONTHS.length; i++) {
+            if (MONTHS[i].toLowerCase() === normalized) return MONTHS[i];
+          }
+        }
+        return monthInNewYork();
+      }
+
+      function swapToCurrent(el) {
+        if (!el) return;
+        var idle = (el.getAttribute('data-idle-class') || '').split(/\s+/);
+        var current = (el.getAttribute('data-current-class') || '').split(/\s+/);
+        for (var i = 0; i < idle.length; i++) {
+          if (idle[i]) el.classList.remove(idle[i]);
+        }
+        for (var j = 0; j < current.length; j++) {
+          if (current[j]) el.classList.add(current[j]);
+        }
+      }
+
+      var monthName = resolveMonth();
+      var card = document.getElementById(monthName.toLowerCase());
+      if (!card || card.getAttribute('data-calendar-month') !== monthName) return;
+
+      card.setAttribute('aria-current', 'date');
+      swapToCurrent(card);
+      swapToCurrent(card.querySelector('[data-month-header]'));
+      swapToCurrent(card.querySelector('[data-month-title]'));
+      swapToCurrent(card.querySelector('[data-intensity-badge]'));
+      swapToCurrent(card.querySelector('[data-intensity-dot]'));
+
+      var pulse = card.querySelector('[data-current-pulse]');
+      if (pulse) pulse.hidden = false;
+      var badge = card.querySelector('[data-current-badge]');
+      if (badge) badge.hidden = false;
+
+      var banner = document.getElementById('current-month-banner');
+      var nameEl = document.getElementById('current-month-name');
+      var link = document.getElementById('current-month-link');
+      if (!banner || !nameEl || !link) return;
+      nameEl.textContent = monthName;
+      link.setAttribute('href', '#' + monthName.toLowerCase());
+      banner.hidden = false;
+    })();
+  </script>
 </BaseLayout>
