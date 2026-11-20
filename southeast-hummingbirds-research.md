@@ -1,7 +1,7 @@
-# SoutheastHummingbirds.com — Research Document
+# southernhummers.com — Research Document
 
 **Project:** Southeast Hummingbird Resource Website  
-**Working Domain:** SoutheastHummingbirds.com  
+**Working Domain:** https://southernhummers.com  
 **Coverage Area:** Georgia, Florida, South Carolina, Alabama  
 **Last Updated:** March 19, 2026
 
@@ -758,4 +758,4 @@ Credit: Dick Daniels via Wikimedia Commons | CC BY-SA 3.0
 
 ---
 
-*Research compiled March 2026 for SoutheastHummingbirds.com*
+*Research compiled March 2026 for https://southernhummers.com*
