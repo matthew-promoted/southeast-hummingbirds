@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SpeciesPhoto from '../components/SpeciesPhoto.astro';
+import PhotoCredit from '../components/PhotoCredit.astro';
 import { species } from '../data/species';
+import { photoFor, rufousFemaleNote, speciesPhotos } from '../data/species-photos';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -15,6 +18,10 @@ const schema = {
 
 const primarySpecies = species.find(s => s.isPrimary)!;
 const rareSpecies = species.filter(s => !s.isPrimary);
+const rubyMale = photoFor(primarySpecies.name, 'male');
+const rubyFemale = photoFor(primarySpecies.name, 'female');
+const cardSizes = '(min-width: 1024px) 22rem, 100vw';
+const rareCardSizes = '(min-width: 768px) 22rem, 100vw';
 ---
 
 <BaseLayout
@@ -85,6 +92,11 @@ const rareSpecies = species.filter(s => !s.isPrimary);
                 Adult Male
               </h3>
             </div>
+            {rubyMale && (
+              <div class="px-5 pt-4 pb-3">
+                <SpeciesPhoto photo={rubyMale} sizes={cardSizes} />
+              </div>
+            )}
             <div class="divide-y divide-gray-50">
               {primarySpecies.features.male.map(f => (
                 <div class="px-5 py-3.5">
@@ -107,6 +119,11 @@ const rareSpecies = species.filter(s => !s.isPrimary);
                 Adult Female
               </h3>
             </div>
+            {rubyFemale && (
+              <div class="px-5 pt-4 pb-3">
+                <SpeciesPhoto photo={rubyFemale} sizes={cardSizes} />
+              </div>
+            )}
             <div class="divide-y divide-gray-50">
               {primarySpecies.features.female.map(f => (
                 <div class="px-5 py-3.5">
@@ -206,6 +223,9 @@ const rareSpecies = species.filter(s => !s.isPrimary);
                     <span class="w-2 h-2 bg-emerald-brand rounded-full"></span>
                     Male
                   </h4>
+                  {photoFor(sp.name, 'male') && (
+                    <SpeciesPhoto photo={photoFor(sp.name, 'male')!} sizes={rareCardSizes} class="mb-3" />
+                  )}
                   <dl class="space-y-1.5">
                     {sp.features.male.map(f => (
                       <div class="flex gap-2 text-sm">
@@ -223,6 +243,9 @@ const rareSpecies = species.filter(s => !s.isPrimary);
                     <span class="w-2 h-2 bg-ruby rounded-full"></span>
                     Female
                   </h4>
+                  {photoFor(sp.name, 'female') && (
+                    <SpeciesPhoto photo={photoFor(sp.name, 'female')!} sizes={rareCardSizes} class="mb-3" />
+                  )}
                   <dl class="space-y-1.5">
                     {sp.features.female.map(f => (
                       <div class="flex gap-2 text-sm">
@@ -231,6 +254,9 @@ const rareSpecies = species.filter(s => !s.isPrimary);
                       </div>
                     ))}
                   </dl>
+                  {sp.name === 'Rufous Hummingbird' && (
+                    <p class="mt-2 text-xs text-gray-500 leading-relaxed">{rufousFemaleNote}</p>
+                  )}
                 </div>
               )}
             </div>
@@ -421,6 +447,29 @@ const rareSpecies = species.filter(s => !s.isPrimary);
           </li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- Photo credits -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <h2 class="text-navy font-heading text-xl mb-6">Photo credits</h2>
+    <div class="bg-white border border-gray-100 rounded-2xl shadow-sm p-6">
+      <ul class="space-y-4 text-sm text-gray-600">
+        {speciesPhotos.map((photo) => (
+          <>
+            <li class="leading-relaxed">
+              <span class="font-medium text-navy">{photo.creditLabel}.</span>{' '}
+              <PhotoCredit photo={photo} />
+            </li>
+            {photo.id === 'rufous-male' && (
+              <li class="leading-relaxed">
+                <span class="font-medium text-navy">Rufous Hummingbird, female.</span>{' '}
+                {rufousFemaleNote}
+              </li>
+            )}
+          </>
+        ))}
+      </ul>
     </div>
   </section>
 </BaseLayout>

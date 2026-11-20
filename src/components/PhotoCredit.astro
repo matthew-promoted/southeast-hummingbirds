@@ -1,0 +1,15 @@
+---
+import type { SpeciesPhoto } from '../data/species-photos';
+
+interface Props {
+  photo: SpeciesPhoto;
+}
+
+const { photo } = Astro.props;
+
+const linkClass =
+  'text-emerald-brand hover:text-emerald-dark underline decoration-emerald-brand/30 underline-offset-2 transition-colors';
+const authorSite = photo.authorUrl?.replace(/^https?:\/\//, '');
+---
+
+<span>Photo: {photo.author}{authorSite && <>, <a href={photo.authorUrl} class={linkClass} target="_blank" rel="noopener noreferrer">{authorSite}</a></>}, <a href={photo.licenseUrl} class={linkClass} target="_blank" rel="license noopener noreferrer">{photo.licenseName}</a>{photo.resized && ' (resized)'}, via <a href={photo.commonsUrl} class={linkClass} target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>.{photo.caveat && <span class="block mt-1 text-gray-600">{photo.caveat}</span>}</span>

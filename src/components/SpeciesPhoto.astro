@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import PhotoCredit from './PhotoCredit.astro';
+import type { SpeciesPhoto } from '../data/species-photos';
+
+interface Props {
+  photo: SpeciesPhoto;
+  sizes?: string;
+  class?: string;
+}
+
+const { photo, sizes = '(min-width: 1024px) 22rem, 100vw', class: className } = Astro.props;
+---
+
+<figure class:list={className}>
+  <Image
+    src={photo.src}
+    alt={photo.alt}
+    width={photo.src.width}
+    height={photo.src.height}
+    layout="constrained"
+    widths={[480, 768, 1200, 1600]}
+    sizes={sizes}
+    format="webp"
+    quality={80}
+    fit="contain"
+    loading={photo.priority ? 'eager' : 'lazy'}
+    decoding="async"
+    fetchpriority={photo.priority ? 'high' : undefined}
+    class="w-full h-auto rounded-xl"
+  />
+  <figcaption class="mt-2 text-xs text-gray-500 leading-relaxed">
+    <PhotoCredit photo={photo} />
+  </figcaption>
+</figure>
