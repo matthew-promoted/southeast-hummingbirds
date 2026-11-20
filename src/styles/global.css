@@ -118,3 +118,35 @@
   padding-left: 1rem;
   color: #4b5563;
 }
+
+.blog-content .table-wrap {
+  overflow-x: auto;
+  margin-top: 1.25rem;
+}
+
+.blog-content table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.blog-content th,
+.blog-content td {
+  border: 1px solid var(--color-mint-dark);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.blog-content th {
+  background: var(--color-navy);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.blog-content tbody tr:nth-child(even) {
+  background: var(--color-mint);
+}
